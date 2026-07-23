@@ -1,0 +1,821 @@
+---
+author: "Jailson Rodrigues, CEO"
+date: "`r Sys.Date()`"
+format:
+  html:
+    page-layout: full
+    theme: cosmo
+    toc: true
+    toc-title: "Índice"
+    toc-location: left
+    code-fold: true
+    code-summary: "Mostrar código R"
+    fig-width: 9
+    fig-height: 6
+execute:
+  warning: false
+  message: false
+---
+
+<div style="text-align:center;">
+
+<img src="images/vislog.svg" width="520" style="filter: brightness(0);">
+
+<h1>Relatório Executivo</h1>
+
+<h3>Estudo de Mercado e Validação da Solução</h3>
+
+<p><b>VISLOG – Precificação Inteligente e IA Especialista</b></p>
+
+</div>
+## 1. Sumário Executivo
+
+O presente relatório tem como objetivo apresentar o dimensionamento de mercado, o cenário competitivo e as hipóteses de validação de produto da **Vislog**. A Vislog atua em uma das dores mais críticas e de maior impacto financeiro para empresas do Varejo, Atacado/Distribuição e Indústria: a **estratégia de precificação (Pricing)**. Nossa solução substitui o empirismo e as regras matemáticas lineares por estatística avançada, calculando a elasticidade real da demanda para maximizar *outcomes* específicos (receita, volume, lucro ou margem). Além disso, integramos Inteligência Artificial generativa para atuar como um consultor especialista na rotina do cliente, democratizando a ciência de dados por meio de relatórios automatizados e linguagem natural.
+
+------------------------------------------------------------------------
+
+## 2. Preparação dos Dados
+
+Para esta análise exploratória de mercado, estamos utilizando a base de dados do Cadastro Nacional da Pessoa Jurídica, processada de forma eficiente através do pacote `arrow` no R, dado o alto volume de registros.
+
+```{r}
+
+#| label: setup-dados
+#| code-summary: "Carregar pacotes e conectar aos dados"
+
+library(arrow)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(tidyr)
+library(knitr)
+# Definição da paleta de cores corporativa da Vislog
+vislog_blue <- "#0A4B96"
+vislog_dark <- "#282828"
+vislog_gray <- "#E0E0E0"
+vislog_light_blue <- "#5C9CE6"
+
+dados <- arrow::open_dataset("/home/jrs/Área de trabalho/extract data/data/")
+
+# 2. Criação dinâmica do segmento direto no escopo do Arrow (sem estourar a RAM)
+dados <- data.frame(dados) %>%
+   filter(situacao == "Ativa") %>%
+   mutate(
+     divisao = substr(cnae, 1, 2),
+     segmento_criado = case_when(
+       divisao == "10" ~ "Alimentos",
+       divisao == "11" ~ "Bebidas",
+       divisao == "13" ~ "Têxtil",
+       divisao == "14" ~ "Vestuário",
+       divisao == "20" ~ "Químicos",
+       divisao == "21" ~ "Farmacêutica",
+       divisao == "22" ~ "Borracha e Plástico",
+       divisao == "23" ~ "Minerais não metálicos",
+       divisao == "24" ~ "Metalurgia",
+       divisao == "25" ~ "Produtos metálicos",
+       divisao == "26" ~ "Eletrônicos",
+       divisao == "27" ~ "Equipamentos elétricos",
+       divisao == "28" ~ "Máquinas e equipamentos",
+       divisao == "29" ~ "Veículos automotores",
+       divisao == "30" ~ "Outros equipamentos de transporte",
+       divisao == "31" ~ "Móveis",
+       divisao == "32" ~ "Produtos diversos",
+       divisao == "46" ~ "Comércio atacadista",
+       divisao == "47" ~ "Comércio varejista",
+       TRUE ~ "Outros"
+     )
+   ) 
+
+dados %>% head(5)  %>%  kable(
+    align = c("l", "r", "r"))
+
+# Abertura do dataset (substitua pelo caminho real do seu diretório/arquivo parquet)
+# dados <- open_dataset("caminho_para_seus_dados_parquet/")
+
+# NOTA: Para fins de renderização deste documento sem a base original, 
+# as queries de EDA abaixo assumem que o objeto 'dados' já está mapeado na memória.
+```
+
+## 3. Análise Exploratória e Dimensionamento (TAM, SAM e SOM)
+
+Construímos o nosso funil de mercado respondendo a perguntas chave de negócio. A estratégia foca em empresas com estrutura e capital suficientes para adotar uma solução avançada de IA para *pricing*.
+
+### 3.1. O Funil de Mercado Vislog
+
+Nosso mercado obedece a três recortes principais:
+
+1.  **TAM (Mercado Total):** Compreende o cenário macro. Considerando todas as empresas ativas no Brasil dentro dos segmentos mapeados que lidam com alta complexidade de SKUs e necessitam de gestão de preços, Este é o teto absoluto da nossa oportunidade no país.
+
+2.  **SAM (Mercado Endereçável Útil):** Aplicando um recorte geográfico focado em regiões que concentram a maior maturidade de gestão, adoção de tecnologia e volume financeiro do país. Nosso mercado endereçável viável no médio prazo.
+
+3.  **SOM (Serviceable Obtainable Market – Mercado Obtível):** Representa a nossa base de captura realista e altamente qualificada para os próximos **12 a 24 meses**. Para chegar a esse mercado potencial, refinamos o **SAM** por meio de três filtros operacionais:
+
+- **Foco geográfico:** priorizamos os estados estratégicos definidos para cada região analisada (por exemplo, São Paulo no Sudeste, Distrito Federal no Centro-Oeste e Bahia, Ceará e Paraíba no Nordeste).
+- **Poder de decisão:** consideramos exclusivamente **estabelecimentos classificados como matriz**, direcionando os esforços comerciais para as unidades que concentram o processo de decisão e contratação.
+- **Maturidade e porte empresarial:** excluímos **Microempresas (ME)**, concentrando a análise em **Empresas de Pequeno Porte (EPP)** e empresas classificadas como **Demais** (médio e grande porte), organizações que apresentam maior complexidade operacional e maior potencial de adoção de soluções de pricing analítico.
+
+Esse conjunto de critérios resulta em uma estimativa mais realista do mercado efetivamente alcançável no curto e médio prazo. A estratégia comercial prevê uma captura inicial entre **2% e 5%** dessa base, priorizando crescimento sustentável, maior retenção de clientes e elevado **Lifetime Value (LTV)**.
+
+------------------------------------------------------------------------
+
+```{r}
+#| label: fig-funil
+#| layout-ncol: 2
+ # 1. Conexão limpa e performática com os dados originais
+
+ 
+ funil_data_SE <- dados %>%
+   filter(situacao == "Ativa") %>%
+   summarize(
+     TAM = n(),
+     SAM = sum(if_else(uf %in% c("SP", "RJ", "MG", "ES"), 1L, 0L), na.rm = TRUE),
+     SOM = sum(if_else(uf == "SP" & estabelecimento == "Matriz" & porte %in% c("Demais", 'Empresa de Pequeno Porte'), 1L, 0L), na.rm = TRUE)
+   ) %>%
+   collect() %>%
+   pivot_longer(cols = everything(), names_to = "Etapa", values_to = "Volume") %>%
+   mutate(Etapa = factor(Etapa, levels = c("TAM", "SAM", "SOM")))
+
+funil_data_S <- dados %>%
+   filter(situacao == "Ativa") %>%
+   summarize(
+     TAM = n(),
+     SAM = sum(if_else(uf %in% c("PR", "RS", "SC"), 1L, 0L), na.rm = TRUE),
+     SOM = sum(if_else(uf == "PR" & estabelecimento == "Matriz" & porte %in% c("Demais", 'Empresa de Pequeno Porte'), 1L, 0L), na.rm = TRUE)
+   ) %>%
+   collect() %>%
+   pivot_longer(cols = everything(), names_to = "Etapa", values_to = "Volume") %>%
+   mutate(Etapa = factor(Etapa, levels = c("TAM", "SAM", "SOM")))
+
+funil_data_NE <- dados %>%
+   filter(situacao == "Ativa") %>%
+   summarize(
+     TAM = n(),
+     SAM = sum(if_else(uf %in% c("AL", "BA", "CE", "MA", "PB", "PE"), 1L, 0L), na.rm = TRUE),
+     SOM = sum(if_else(uf %in% c("BA", "CE", "PB") & estabelecimento == "Matriz" & porte %in% c("Demais", 'Empresa de Pequeno Porte'), 1L, 0L), na.rm = TRUE)
+   ) %>%
+   collect() %>%
+   pivot_longer(cols = everything(), names_to = "Etapa", values_to = "Volume") %>%
+   mutate(Etapa = factor(Etapa, levels = c("TAM", "SAM", "SOM")))
+
+funil_data_CO <- dados %>%
+   filter(situacao == "Ativa") %>%
+   summarize(
+     TAM = n(),
+     SAM = sum(if_else(uf %in% c("GO", "MT", "MS", "DF"), 1L, 0L), na.rm = TRUE),
+     SOM = sum(if_else(uf == "DF" & estabelecimento == "Matriz" & porte %in% c("Demais", 'Empresa de Pequeno Porte'), 1L, 0L), na.rm = TRUE)
+   ) %>%
+   collect() %>%
+   pivot_longer(cols = everything(), names_to = "Etapa", values_to = "Volume") %>%
+   mutate(Etapa = factor(Etapa, levels = c("TAM", "SAM", "SOM")))
+
+
+
+funil_data_SE %>% ggplot( aes(x = Etapa, y = Volume, fill = Etapa)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = scales::number(Volume, big.mark = ".", decimal.mark = ",")), 
+            vjust = -0.5, fontface = "bold", color = vislog_dark,size = 5) +
+  scale_fill_manual(values = c("TAM" = vislog_gray, "SAM" = vislog_light_blue, "SOM" = vislog_blue)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Funil de Dimensionamento de Mercado: Sudeste",
+    subtitle = "Vislog: Do Mercado Total Endereçável ao Público Inicial",
+    x = "", y = "Quantidade de Empresas"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 19),
+    legend.position = "none",
+    axis.text.y = element_blank(),
+    panel.grid = element_blank()
+  )
+
+
+funil_data_NE %>% ggplot( aes(x = Etapa, y = Volume, fill = Etapa)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = scales::number(Volume, big.mark = ".", decimal.mark = ",")), 
+            vjust = -0.5, fontface = "bold", color = vislog_dark,size = 5) +
+  scale_fill_manual(values = c("TAM" = vislog_gray, "SAM" = vislog_light_blue, "SOM" = vislog_blue)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Funil de Dimensionamento de Mercado: Nordeste",
+    subtitle = "Vislog: Do Mercado Total Endereçável ao Público Inicial",
+    x = "", y = "Quantidade de Empresas"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 19),
+    legend.position = "none",
+    axis.text.y = element_blank(),
+    panel.grid = element_blank()
+  )
+
+funil_data_S %>% ggplot( aes(x = Etapa, y = Volume, fill = Etapa)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = scales::number(Volume, big.mark = ".", decimal.mark = ",")), 
+            vjust = -0.5, fontface = "bold", color = vislog_dark,size = 5) +
+  scale_fill_manual(values = c("TAM" = vislog_gray, "SAM" = vislog_light_blue, "SOM" = vislog_blue)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Funil de Dimensionamento de Mercado: Sul",
+    subtitle = "Vislog: Do Mercado Total Endereçável ao Público Inicial",
+    x = "", y = "Quantidade de Empresas"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 19),
+    legend.position = "none",
+    axis.text.y = element_blank(),
+    panel.grid = element_blank()
+  )
+
+funil_data_CO %>% ggplot( aes(x = Etapa, y = Volume, fill = Etapa)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = scales::number(Volume, big.mark = ".", decimal.mark = ",")), 
+            vjust = -0.5, fontface = "bold", color = vislog_dark ,size = 5) +
+  scale_fill_manual(values = c("TAM" = vislog_gray, "SAM" = vislog_light_blue, "SOM" = vislog_blue)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.16))) +
+  labs(
+    title = "Funil de Dimensionamento de Mercado: Centro-Oeste",
+    subtitle = "Vislog: Do Mercado Total Endereçável ao Público Inicial",
+    x = "", y = "Quantidade de Empresas"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 19),
+    legend.position = "none",
+    axis.text.y = element_blank(),
+    panel.grid = element_blank()
+  )
+
+```
+
+
+```{r}
+library(dplyr)
+library(scales)
+
+#===========================
+# Parâmetros do negócio
+#===========================
+INSTALACAO <- 1200
+MENSALIDADE <- 500
+ARR <- MENSALIDADE * 12
+PRIMEIRO_ANO <- INSTALACAO + ARR
+
+#===========================
+# Dados do funil
+#===========================
+funil <- tibble(
+  Regiao = c("Sudeste",
+             "Nordeste",
+             "Sul",
+             "Centro-Oeste"),
+
+  TAM = c(1200000,
+          1200000,
+          1200000,
+          1200000),
+
+  SAM = c(561760,
+          168631,
+          259452,
+          108976),
+
+  SOM = c(76973,
+          13094,
+          16727,
+          2283)
+)
+
+#===========================
+# Cálculo financeiro
+#===========================
+mercado_valor <- funil %>%
+  mutate(
+
+    # Receita de implantação
+    TAM_Instalacao = TAM * INSTALACAO,
+    SAM_Instalacao = SAM * INSTALACAO,
+    SOM_Instalacao = SOM * INSTALACAO,
+
+    # Receita recorrente anual
+    TAM_ARR = TAM * ARR,
+    SAM_ARR = SAM * ARR,
+    SOM_ARR = SOM * ARR,
+
+    # Receita potencial do primeiro ano
+    TAM_Primeiro_Ano = TAM * PRIMEIRO_ANO,
+    SAM_Primeiro_Ano = SAM * PRIMEIRO_ANO,
+    SOM_Primeiro_Ano = SOM * PRIMEIRO_ANO
+  )
+
+
+
+
+```
+
+
+## Dimensionamento Financeiro do Mercado
+
+Considerando o modelo de monetização da Vislog, composto por uma **taxa única de implantação de R$ 1.200** e uma **mensalidade de R$ 500** (equivalente a **R$ 6.000 de receita recorrente anual por cliente**), estimou-se o potencial financeiro do mercado para cada etapa do funil.
+
+Neste relatório, considera-se a receita potencial do **primeiro ano**, equivalente a:
+
+\[
+Receita_{1ºAno} = Instalação + (Mensalidade \times 12)
+\]
+
+Ou seja,
+
+\[
+R\$1.200 + (R\$500 \times 12)=R\$7.200
+\]
+
+por cliente.
+
+```{r}
+library(dplyr)
+library(scales)
+library(knitr)
+
+resumo <- mercado_valor %>%
+  transmute(
+    Região = Regiao,
+    `TAM (1º Ano)` = dollar(
+      TAM_Primeiro_Ano,
+      prefix = "R$ ",
+      big.mark = ".",
+      decimal.mark = ",",
+      accuracy = 1
+    ),
+    `SAM (1º Ano)` = dollar(
+      SAM_Primeiro_Ano,
+      prefix = "R$ ",
+      big.mark = ".",
+      decimal.mark = ",",
+      accuracy = 1
+    ),
+    `SOM (1º Ano)` = dollar(
+      SOM_Primeiro_Ano,
+      prefix = "R$ ",
+      big.mark = ".",
+      decimal.mark = ",",
+      accuracy = 1
+    )
+  )
+
+kable(
+  resumo,
+  caption = "Tabela 1. Potencial Financeiro do Mercado por Região",
+  align = c("l", "r", "r", "r"),
+  booktabs = TRUE
+)
+```
+
+### Totais Nacionais
+
+```{r}
+totais <- mercado_valor %>%
+  summarise(
+    `TAM (1º Ano)` = sum(TAM_Primeiro_Ano),
+    `SAM (1º Ano)` = sum(SAM_Primeiro_Ano),
+    `SOM (1º Ano)` = sum(SOM_Primeiro_Ano)
+  ) %>%
+  mutate(
+    across(
+      everything(),
+      ~ dollar(
+        .x,
+        prefix = "R$ ",
+        big.mark = ".",
+        decimal.mark = ",",
+        accuracy = 1
+      )
+    )
+  )
+
+kable(
+  totais,
+  caption = "Tabela 2. Mercado Potencial Nacional",
+  align = c("r", "r", "r"),
+  booktabs = TRUE
+)
+```
+
+### Principais Resultados
+
+- **TAM (Total Addressable Market):** representa o faturamento potencial máximo considerando a adoção da solução por todas as empresas elegíveis.
+- **SAM (Serviceable Available Market):** representa a parcela do mercado efetivamente atendível pela Vislog, considerando seu foco estratégico.
+- **SOM (Serviceable Obtainable Market):** representa a estimativa conservadora da participação de mercado inicialmente capturável.
+
+Todos os valores apresentados correspondem à **receita potencial do primeiro ano de contrato**, composta pela taxa de implantação (R$ 1.200) acrescida de doze mensalidades (R$ 500/mês), totalizando **R$ 7.200 por cliente**.
+
+
+## Cenário Conservador: Captura de 3% do SOM
+
+Embora o SOM represente o mercado inicialmente alcançável, é pouco provável que toda essa parcela seja capturada no curto prazo. Dessa forma, apresenta-se um cenário conservador considerando a aquisição de **3% do SOM**, permitindo estimar uma projeção inicial de faturamento.
+
+```{r}
+library(dplyr)
+library(scales)
+library(knitr)
+
+cenario_3 <- mercado_valor %>%
+  mutate(
+    Clientes = round(SOM * 0.03),
+    Receita_Primeiro_Ano = Clientes * PRIMEIRO_ANO
+  ) %>%
+  transmute(
+    Região = Regiao,
+    `Clientes (3% SOM)` = comma(Clientes, big.mark = "."),
+    `Receita Potencial (1º Ano)` = dollar(
+      Receita_Primeiro_Ano,
+      prefix = "R$ ",
+      big.mark = ".",
+      decimal.mark = ",",
+      accuracy = 1
+    )
+  )
+
+kable(
+  cenario_3,
+  caption = "Tabela 3. Cenário Conservador considerando a captura de 3% do SOM",
+  align = c("l","r","r"),
+  booktabs = TRUE
+)
+```
+
+### Total Nacional
+
+```{r}
+total_3 <- mercado_valor %>%
+  summarise(
+    Clientes = round(sum(SOM) * 0.03),
+    Receita = Clientes * PRIMEIRO_ANO
+  ) %>%
+  transmute(
+    `Clientes Totais` = comma(Clientes, big.mark = "."),
+    `Receita Potencial (1º Ano)` = dollar(
+      Receita,
+      prefix = "R$ ",
+      big.mark = ".",
+      decimal.mark = ",",
+      accuracy = 1
+    )
+  )
+
+kable(
+  total_3,
+  caption = "Tabela 4. Projeção Nacional considerando a captura de 3% do SOM",
+  align = c("r","r"),
+  booktabs = TRUE
+)
+```
+
+Neste cenário conservador, a Vislog conquistaria aproximadamente **3% do mercado inicialmente alcançável (SOM)**, correspondendo a uma estimativa de clientes efetivamente convertidos e ao faturamento potencial do primeiro ano. Essa abordagem fornece uma projeção mais realista para os primeiros anos de operação, sendo adequada para análises de viabilidade econômica e planejamento comercial.
+
+
+
+### 3.2. Onde está concentrada a maior parte do nosso mercado?
+
+Para consolidar o SAM, validamos a distribuição geográfica. A ferramenta de precificação gera mais impacto onde o volume de transações e a concorrência são maiores.
+
+
+
+
+
+```{r}
+#| label: fig-geo
+#| fig-cap: "Top 10 Estados com Maior Concentração de Empresas"
+
+plot_estados <- dados %>%
+  filter(situacao == "Ativa") %>%
+  count(uf, name = "total_empresas") %>%
+  arrange(desc(total_empresas)) %>%
+  head(10) %>%
+  collect() %>%
+  ggplot(aes(x = reorder(uf, total_empresas), y = total_empresas)) +
+  geom_col(fill = vislog_blue, alpha = 0.9) +
+  coord_flip() +
+  scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
+  labs(
+    title = "Top 10 Estados com Maior Concentração de Empresas",
+    subtitle = "Base de empresas ativas (Validação de SAM)",
+    x = "Estado (UF)",
+    y = "Volume de Empresas"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 14),
+    panel.grid.major.y = element_blank()
+  )
+
+plot_estados
+```
+
+### 3.3. Qual é o perfil de governança corporativa?
+
+Para vender uma solução estratégica que muda a margem da empresa, precisamos focar nos tomadores de decisão (Matrizes) e entender o tamanho da estrutura (Porte).
+
+```{r}
+#| label: fig-governanca
+#| fig-cap: "Estrutura Corporativa por Porte (Matriz vs. Filial)"
+
+plot_matriz_porte <- dados %>%
+  filter(situacao == "Ativa", porte != "Não informado", !is.na(porte)) %>%
+  count(porte, estabelecimento, name = "total") %>%
+  collect() %>%
+  ggplot(aes(x = reorder(porte, -total), y = total, fill = estabelecimento)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c("Matriz" = vislog_blue, "Filial" = vislog_light_blue)) +
+  scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
+  labs(
+    title = "Estrutura Corporativa por Porte",
+    subtitle = "Identificação de tomadores de decisão (Foco no SOM)",
+    x = "Porte da Empresa",
+    y = "Quantidade",
+    fill = "Tipo"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "top"
+  )
+
+plot_matriz_porte
+```
+
+### 3.4. Qual é o poder de compra do nosso cliente alvo?
+
+Analisar o Capital Social (em escala logarítmica, devido aos valores extremos) nos permite balizar o *Pricing* do nosso próprio SaaS. Empresas de capital irrisório não têm orçamento para projetos robustos de IA.
+
+```{r}
+#| label: fig-capital
+#| fig-cap: "Poder de Compra: Distribuição de Capital Social"
+
+plot_capital <- dados %>%
+  filter(situacao == "Ativa", porte != "Não informado", capital_social > 0) %>%
+  select(porte, capital_social) %>%
+  collect() %>%
+  ggplot(aes(x = porte, y = capital_social, fill = porte)) +
+  geom_boxplot(alpha = 0.7, outlier.alpha = 0.1, outlier.color = vislog_gray) +
+  scale_y_log10(labels = label_dollar(prefix = "R$ ", big.mark = ".", decimal.mark = ",")) +
+  scale_fill_brewer(palette = "Blues") +
+  labs(
+    title = "Distribuição do Capital Social por Porte (Escala Logarítmica)",
+    subtitle = "Avaliação de poder de compra e ticket médio para licenças SaaS",
+    x = "Porte da Empresa",
+    y = "Capital Social (Log10)"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "none",
+    axis.text.x = element_text(angle = 15, hjust = 1)
+  )
+
+plot_capital
+```
+
+#### Perfil de Clientes Potenciais por Segmento e Poder de Compra
+
+```{r}
+#| label: tbl-perfil-segmentos
+#| tbl-cap: "Análise de Volume e Capital Mediano por Segmento de Mercado"
+
+library(knitr)
+library(dplyr)
+
+# Criação do data frame com os dados consolidados da sua consulta
+dados %>%
+     filter(situacao == "Ativa") %>%
+     group_by(segmento_criado) %>%
+     summarise(
+         total_empresas = n(),
+         capital_mediano = median(capital_social, na.rm = TRUE) # Mediana é melhor para evitar distorções de outliers
+         )%>%  
+        arrange(desc(capital_mediano)) %>%
+        collect() -> tabela_segmentos
+
+# Formatação executiva dos dados para o relatório final
+tabela_segmentos %>%
+  mutate(
+    `Total de Empresas` = scales::number(total_empresas, big.mark = ".", decimal.mark = ","),
+    `Capital Social Mediano` = scales::dollar(capital_mediano, prefix = "R\\$", big.mark = ".", decimal.mark = ",")
+  ) %>%
+  select(
+    Segmento = segmento_criado, 
+    `Total de Empresas`, 
+    `Capital Social Mediano`
+  ) %>%
+  kable(
+    align = c("l", "r", "r"),
+    col.names = c("Segmento", "Total de Empresas", "Capital Social Mediano")
+  )
+```
+
+## 4. Análise do Cenário Atual: A Dor do Cliente
+
+#### Cenário Competitivo e Posicionamento de Mercado
+
+A tabela abaixo apresenta o mapeamento dos principais competidores mapeados no mercado de inteligência de preços e o posicionamento estratégico diferenciado da **Vislog**, cruzando o foco de atuação de cada player com os filtros e segmentos identificados em nossa base de dados cadastrais (`cnae`).
+
+| Player | Foco de Atuação | Intersecção com a Base (`cnae`) | Core Tecnológico | Vulnerabilidade / Lacuna do Concorrente |
+|:--------------|:--------------|:--------------|:--------------|:--------------|
+| **Precifica** | Varejo Geral, E-commerce e Indústria | Segmentos amplos, comércio eletrônico e indústrias macro. | *Web Crawlers* em Nuvem e Correspondência de EAN | Solução excessivamente genérica; falta profundidade nas regras logísticas, tributárias e regulatórias de nichos complexos. |
+| **InfoPrice** | Supermercados e Farmácias | Filtro na base: `segmento == "FARMACIA"` e CNAEs de varejo alimentar. | *Big Data* de campo e Regras de Margem Dinâmica | Fortíssimo foco em varejo físico e monitoramento de ponta (gôndola). Abre espaço para quem foca no *backoffice*, distribuição e inteligência B2B. |
+| **Proffer** | Farmácias, Distribuição e Indústrias | **Concorrente Direto.** Filtro na base: `segmento %in% c("FARMACIA", "DISTRIBUIDORA", "INDUSTRIA")`. | *Machine Learning* e Modelos Preditivos de Elasticidade | É o posicionamento mais próximo. Focam muito na elasticidade do preço puro, mas deixam de lado as complexidades de frete, malha e custos dinâmicos de entrega. |
+| **Pricemet** | Inteligência de Mercado e Projetos Customizados | Atende demandas sob medida de grandes corporações. | Bancos Relacionais e Dashboards de *Power BI* / Tableau | Modelo de atuação muito baseado em horas de consultoria tradicional, o que torna a solução cara, lenta de implementar e pouco escalável para médias empresas. |
+| <mark>**VISLOG**</mark> | **Inteligência de Precificação Integrada à Logística B2B** | **Core total da base:** `FARMACIA DISTRIBUIDORAS INDUSTRIA e Varejo` | *\*\*Machine\*\* Learning* Estatiística Avançada; Elasticidade**; Modelos Mistos;IA Generativa** | **Nossa Oportunidade:** Somos uma plataforma especializada em inteligência de preços que utiliza algoritmos avançados para precificar de forma dinâmica. A única solução do mercado a processar variáveis de alta complexidade para otimização de margens em tempo real, automatizando a tomada de decisão em larga escala via interface em linguagem natural. |
+
+
+::: callout-note
+### O mercado brasileiro ainda é tratada de forma rudimentar:
+
+1.  **O "Achismo" e o *Feeling*:** Decisões baseadas puramente na experiência empírica do gestor de contas.
+
+2.  **A Regra do "Custo + Markup Linear":** Utilização de ERPs que apenas adicionam uma margem fixa sobre o custo do produto.
+
+**A grande falha:** Ao aplicar o mesmo markup linear no portfólio inteiro, a empresa perde volume de vendas nos itens **elásticos** (onde o cliente é sensível a preço) e deixa dinheiro na mesa nos itens **inelásticos** (onde o cliente pagaria mais).
+
+:::
+
+
+## 5. Diferenciais Competitivos da Vislog
+
+| Pilar | Como a VISLOG resolve | Diferencial Competitivo |
+|----------------|----------------------------|-----------------------------|
+| **Ciência de Dados Aplicada** | Utiliza modelos estatísticos avançados para estimar elasticidade de preços, sensibilidade da demanda, impacto de promoções e projeções de faturamento e margem. | As decisões deixam de ser baseadas em regras fixas ou experiência do gestor e passam a ser sustentadas por evidências estatísticas e modelos preditivos. |
+| **Inteligência Comercial Integrada** | Consolida dados de vendas, concorrência, logística, tributação, custos e indicadores operacionais em uma única plataforma analítica. | A precificação deixa de analisar apenas o preço do concorrente e passa a considerar toda a cadeia de formação de margem e rentabilidade. |
+| **IA Generativa como Copiloto** | Um agente inteligente interpreta os dados, responde perguntas em linguagem natural, gera relatórios automáticos e explica as recomendações produzidas pelos modelos analíticos. | Democratiza o acesso à inteligência analítica, reduzindo a dependência de especialistas em pricing e acelerando a tomada de decisão. |
+| **Arquitetura Escalável de Dados** | Processamento otimizado para milhões de registros utilizando Apache Arrow, bancos analíticos e integração via APIs com ERPs e demais sistemas corporativos. | Permite análises de milhares de SKUs em poucos minutos, mantendo alta performance mesmo em operações de grande porte. |
+
+## 5.1. Diferencial Científico
+
+O principal ativo tecnológico da VISLOG é seu núcleo de modelagem estatística, desenvolvido para transformar grandes volumes de dados operacionais em recomendações objetivas de negócio.
+
+Entre as principais técnicas empregadas destacam-se:
+
+- **Modelos Lineares Mistos (Mixed-Effects Models):** utilizados para separar efeitos globais do mercado dos efeitos específicos de clientes, regiões, canais de venda e características operacionais, aumentando a precisão das estimativas de elasticidade e demanda.
+
+- **Modelos de Regressão e Inferência Estatística:** empregados para mensurar a relação entre preço, volume vendido, margem, custos logísticos, tributação e demais variáveis de negócio, permitindo simular cenários antes da implementação de qualquer alteração comercial.
+
+- **Modelagem Preditiva:** utilizada para antecipar impactos financeiros, identificar oportunidades de ganho de margem e recomendar estratégias de precificação baseadas em dados históricos e comportamento do mercado.
+
+## 5.2 Arquitetura Tecnológica
+
+A plataforma foi concebida para suportar ambientes corporativos de grande escala, sendo composta por:
+
+- **Camada de Integração:** APIs REST para conexão com ERPs, CRMs e sistemas legados.
+- **Camada de Dados:** processamento analítico utilizando Apache Arrow e bancos relacionais de alta performance.
+- **Camada Analítica:** modelos estatísticos, algoritmos de Machine Learning e mecanismos de otimização de preços.
+- **Camada de Inteligência Artificial:** agente de IA Generativa responsável por explicar resultados, produzir relatórios e interagir com usuários em linguagem natural.
+- **Camada de Visualização:** dashboards executivos com indicadores de pricing, margem, elasticidade, competitividade, logística e simulações de cenários.
+
+```{mermaid}
+flowchart TD
+    %% Definições de Estilo (Paleta Vislog)
+    classDef fontes fill:#1E2F4D,stroke:#4D8CFF,stroke-width:2px,color:#FFFFFF;
+    classDef Entrada fill:#182B49,stroke:#669DFF,stroke-width:2px,color:#FFFFFF;
+    classDef motor fill:#253959,stroke:#3B76E5,stroke-width:2px,color:#FFFFFF;
+    classDef ia fill:#4D8CFF,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef outputs fill:#121D31,stroke:#8AABDA,stroke-width:2px,color:#FFFFFF;
+
+    %% Estrutura do Fluxo
+    subgraph Grupo_Entrada ["Fontes de Dados"]
+        A1["ERP"]
+        A2["CRM"]
+        A3["Custos"]
+        A4["Logística"]
+        A5["Concorrência"]
+        A6["Tributação"]
+    end
+
+    B["VISLOG Intelligence Engine"]
+
+    subgraph Core_Cientifico ["Core Científico"]
+        C1["Modelos Estatísticos"]
+        C2["Elasticidade"]
+        C3["Machine Learning"]
+        C4["Otimização"]
+    end
+
+    D["IA Generativa"]
+
+    subgraph Grupo_Outputs ["Resultados de Saída"]
+        E1["Preço Ótimo"]
+        E2["Maior Margem"]
+        E3["Maior Competitividade"]
+        E4["Relatórios em Segundos"]
+        E5["Explicações em Linguagem Natural"]
+    end
+
+    %% Conexões
+    Grupo_Entrada --> B
+    B --> Core_Cientifico
+    Core_Cientifico --> D
+    
+    D --> E1
+    D --> E2
+    D --> E3
+    D --> E4
+    D --> E5
+
+    %% Aplicação das Cores (Classes) aos Nós
+    class A1,A2,A3,A4,A5,A6 fontes;
+    class B Entrada;
+    class C1,C2,C3,C4 motor;
+    class D ia;
+    class E1,E2,E3,E4,E5 outputs;
+
+    %% Estilização tracejada para os subgrupos (mantém o visual limpo no Dark Mode)
+    style Grupo_Entrada fill:none,stroke:#4D8CFF,stroke-width:1px,stroke-dasharray: 5 5,color:#FFFFFF
+    style Core_Cientifico fill:none,stroke:#3B76E5,stroke-width:1px,stroke-dasharray: 5 5,color:#FFFFFF
+    style Grupo_Outputs fill:none,stroke:#8AABDA,stroke-width:1px,stroke-dasharray: 5 5,color:#FFFFFF
+
+```
+
+------------------------------------------------------------------------
+
+## 6. Modelo de Negócio e Estratégia de Precificação
+
+A **Vislog** opera sob o modelo **SaaS B2B (Software as a Service)** com receita recorrente mensal e anual previsível. O modelo elimina custos inviáveis de consultoria tradicional e adota uma precificação baseada no valor gerado e na complexidade da operação do cliente (*Value & Volume Pricing*).
+
+#### Pilares da Cobrança
+
+- **Setup Fee (Taxa de Implementação):** Cobrada uma única vez. Cobre a integração com o ERP/CRM do cliente e a modelagem inicial da malha logística.
+- **Assinatura Recorrente Mensal (SaaS):** Faixas de preço indexadas à complexidade operacional do cliente (volume de SKUs monitorados e quantidade de filiais/UFs).
+- **Add-ons (Módulos Adicionais):** Cobranças sob demanda para simulações fiscais interestaduais complexas e conexões extras de APIs de distribuidores.
+
+### 6.2. Matriz de Planos Estratégicos
+
+| **Plano** | **Segmento** | **Objetivo** | **Valor Entregue** |
+|-----------|--------------|--------------|--------------------|
+| **Retail** | Farmácias e Redes de Farmácias | Maximizar a margem e a competitividade no varejo farmacêutico por meio de precificação baseada em dados. | Pricing dinâmico, análise de elasticidade, monitoramento de concorrência, recomendações automáticas de preços e dashboards gerenciais. |
+| **Distribution** | Distribuidores Farmacêuticos | Otimizar preços considerando custos logísticos, tributação e rentabilidade por cliente e região. | Simulações de margem, análise de impacto de frete e ICMS, políticas comerciais, inteligência logística e recomendações de precificação dinâmica. |
+| **Enterprise** | Indústrias e Grandes Operações de Varejo | Definir estratégias corporativas de precificação utilizando modelos científicos e inteligência artificial. | Modelos estatísticos avançados, Machine Learning, IA Generativa, integrações via APIs, ambientes dedicados, simulações em larga escala e suporte especializado. |
+
+#### Viabilidade Econômica da Base de Clientes
+
+Para garantir a aderência dos planos ao mercado, analisamos a segmentação
+
+```{r}
+#| label: fig-precificacao
+#| fig-cap: "Distribuição do Mercado Alvo por Faixa de Complexidade Operacional"
+
+# Classificação analítica com base na capacidade financeira/tamanho cadastral
+analise_faixas <- dados %>%
+  filter(
+    situacao == "Ativa"
+    # Adicione filtros de segmento se necessário, ex: & segmento %in% c("FARMACIA", "DISTRIBUIDORA")
+  ) %>%
+  mutate(
+    Perfil_Cliente = case_when(
+      capital_social <= 150000 ~ "Essential (Pequeno/Médio)",
+      capital_social > 150000 & capital_social <= 1000000 ~ "Pro (Grande Regional)",
+      capital_social > 1000000 ~ "Enterprise (Nacional)",
+      TRUE ~ "Não Informado"
+    )
+  ) %>%
+  count(Perfil_Cliente) %>%
+  collect() %>% # Agregação performática com arrow
+  filter(Perfil_Cliente != "Não Informado") %>%
+  mutate(percentual = n / sum(n))
+
+ggplot(analise_faixas, aes(x = reorder(Perfil_Cliente, n), y = n, fill = Perfil_Cliente)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = scales::percent(percentual, accuracy = 0.1)), 
+            hjust = -.2, fontface = "bold", color = vislog_dark) +
+  scale_fill_manual(values = c(
+    "Essential (Pequeno/Médio)" = vislog_gray, 
+    "Pro (Grande Regional)" = vislog_light_blue, 
+    "Enterprise (Nacional)" = vislog_blue
+  )) +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.2)), labels = label_number(big.mark = ".", decimal.mark = ",")) +
+  labs(
+    title = "Aderência Volumétrica do Modelo de Negócio",
+    subtitle = "Divisão de clientes ativos aptos para cada camada de planos da Vislog",
+    x = "", y = "Quantidade de Empresas"
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(color = vislog_dark),
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "none",
+    panel.grid.major.y = element_blank()
+  )
+```
+
+## 7.Proposta de Valor
+
+Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a **VISLOG** transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra **estatística, inteligência artificial, logística, tributação e inteligência comercial** para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.
+
+Nosso foco imediato é o avanço para Provas de Conceito (PoCs) baseadas neste perfil ideal de cliente mapeado (SOM), visando mensurar o ganho percentual na margem de contribuição (última linha do DRE) em ambiente real de operação.

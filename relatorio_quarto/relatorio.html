@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jailson Rodrigues, CEO">
+<meta name="dcterms.date" content="2026-07-23">
+
+<title>relatorio</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="relatorio_files/libs/clipboard/clipboard.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="relatorio_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="relatorio_files/libs/quarto-html/popper.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/anchor.min.js"></script>
+<link href="relatorio_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="relatorio_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="relatorio_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="relatorio_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="relatorio_files/libs/bootstrap/bootstrap-534f6fba0d4299da0ab21bce92547932.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="relatorio_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="relatorio_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="relatorio_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#sumário-executivo" id="toc-sumário-executivo" class="nav-link active" data-scroll-target="#sumário-executivo">1. Sumário Executivo</a></li>
+  <li><a href="#preparação-dos-dados" id="toc-preparação-dos-dados" class="nav-link" data-scroll-target="#preparação-dos-dados">2. Preparação dos Dados</a></li>
+  <li><a href="#análise-exploratória-e-dimensionamento-tam-sam-e-som" id="toc-análise-exploratória-e-dimensionamento-tam-sam-e-som" class="nav-link" data-scroll-target="#análise-exploratória-e-dimensionamento-tam-sam-e-som">3. Análise Exploratória e Dimensionamento (TAM, SAM e SOM)</a>
+  <ul class="collapse">
+  <li><a href="#o-funil-de-mercado-vislog" id="toc-o-funil-de-mercado-vislog" class="nav-link" data-scroll-target="#o-funil-de-mercado-vislog">3.1. O Funil de Mercado Vislog</a></li>
+  </ul></li>
+  <li><a href="#dimensionamento-financeiro-do-mercado" id="toc-dimensionamento-financeiro-do-mercado" class="nav-link" data-scroll-target="#dimensionamento-financeiro-do-mercado">Dimensionamento Financeiro do Mercado</a>
+  <ul class="collapse">
+  <li><a href="#totais-nacionais" id="toc-totais-nacionais" class="nav-link" data-scroll-target="#totais-nacionais">Totais Nacionais</a></li>
+  <li><a href="#principais-resultados" id="toc-principais-resultados" class="nav-link" data-scroll-target="#principais-resultados">Principais Resultados</a></li>
+  </ul></li>
+  <li><a href="#cenário-conservador-captura-de-3-do-som" id="toc-cenário-conservador-captura-de-3-do-som" class="nav-link" data-scroll-target="#cenário-conservador-captura-de-3-do-som">Cenário Conservador: Captura de 3% do SOM</a>
+  <ul class="collapse">
+  <li><a href="#total-nacional" id="toc-total-nacional" class="nav-link" data-scroll-target="#total-nacional">Total Nacional</a></li>
+  <li><a href="#onde-está-concentrada-a-maior-parte-do-nosso-mercado" id="toc-onde-está-concentrada-a-maior-parte-do-nosso-mercado" class="nav-link" data-scroll-target="#onde-está-concentrada-a-maior-parte-do-nosso-mercado">3.2. Onde está concentrada a maior parte do nosso mercado?</a></li>
+  <li><a href="#qual-é-o-perfil-de-governança-corporativa" id="toc-qual-é-o-perfil-de-governança-corporativa" class="nav-link" data-scroll-target="#qual-é-o-perfil-de-governança-corporativa">3.3. Qual é o perfil de governança corporativa?</a></li>
+  <li><a href="#qual-é-o-poder-de-compra-do-nosso-cliente-alvo" id="toc-qual-é-o-poder-de-compra-do-nosso-cliente-alvo" class="nav-link" data-scroll-target="#qual-é-o-poder-de-compra-do-nosso-cliente-alvo">3.4. Qual é o poder de compra do nosso cliente alvo?</a></li>
+  </ul></li>
+  <li><a href="#análise-do-cenário-atual-a-dor-do-cliente" id="toc-análise-do-cenário-atual-a-dor-do-cliente" class="nav-link" data-scroll-target="#análise-do-cenário-atual-a-dor-do-cliente">4. Análise do Cenário Atual: A Dor do Cliente</a></li>
+  <li><a href="#diferenciais-competitivos-da-vislog" id="toc-diferenciais-competitivos-da-vislog" class="nav-link" data-scroll-target="#diferenciais-competitivos-da-vislog">5. Diferenciais Competitivos da Vislog</a></li>
+  <li><a href="#diferencial-científico" id="toc-diferencial-científico" class="nav-link" data-scroll-target="#diferencial-científico">5.1. Diferencial Científico</a></li>
+  <li><a href="#arquitetura-tecnológica" id="toc-arquitetura-tecnológica" class="nav-link" data-scroll-target="#arquitetura-tecnológica">5.2 Arquitetura Tecnológica</a></li>
+  <li><a href="#modelo-de-negócio-e-estratégia-de-precificação" id="toc-modelo-de-negócio-e-estratégia-de-precificação" class="nav-link" data-scroll-target="#modelo-de-negócio-e-estratégia-de-precificação">6. Modelo de Negócio e Estratégia de Precificação</a>
+  <ul class="collapse">
+  <li><a href="#matriz-de-planos-estratégicos" id="toc-matriz-de-planos-estratégicos" class="nav-link" data-scroll-target="#matriz-de-planos-estratégicos">6.2. Matriz de Planos Estratégicos</a></li>
+  </ul></li>
+  <li><a href="#proposta-de-valor" id="toc-proposta-de-valor" class="nav-link" data-scroll-target="#proposta-de-valor">7.Proposta de Valor</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jailson Rodrigues, CEO </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 23, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="text-align:center;">
+<p><img src="images/vislog.svg" width="520" style="filter: brightness(0);"></p>
+<h1>
+Relatório Executivo
+</h1>
+<h3 class="anchored">
+Estudo de Mercado e Validação da Solução
+</h3>
+<p>
+<b>VISLOG – Precificação Inteligente e IA Especialista</b>
+</p>
+</div>
+<section id="sumário-executivo" class="level2">
+<h2 class="anchored" data-anchor-id="sumário-executivo">1. Sumário Executivo</h2>
+<p>O presente relatório tem como objetivo apresentar o dimensionamento de mercado, o cenário competitivo e as hipóteses de validação de produto da <strong>Vislog</strong>. A Vislog atua em uma das dores mais críticas e de maior impacto financeiro para empresas do Varejo, Atacado/Distribuição e Indústria: a <strong>estratégia de precificação (Pricing)</strong>. Nossa solução substitui o empirismo e as regras matemáticas lineares por estatística avançada, calculando a elasticidade real da demanda para maximizar <em>outcomes</em> específicos (receita, volume, lucro ou margem). Além disso, integramos Inteligência Artificial generativa para atuar como um consultor especialista na rotina do cliente, democratizando a ciência de dados por meio de relatórios automatizados e linguagem natural.</p>
+<hr>
+</section>
+<section id="preparação-dos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="preparação-dos-dados">2. Preparação dos Dados</h2>
+<p>Para esta análise exploratória de mercado, estamos utilizando a base de dados do Cadastro Nacional da Pessoa Jurídica, processada de forma eficiente através do pacote <code>arrow</code> no R, dado o alto volume de registros.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup-dados</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Carregar pacotes e conectar aos dados"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Definição da paleta de cores corporativa da Vislog</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>vislog_blue <span class="ot">&lt;-</span> <span class="st">"#0A4B96"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>vislog_dark <span class="ot">&lt;-</span> <span class="st">"#282828"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>vislog_gray <span class="ot">&lt;-</span> <span class="st">"#E0E0E0"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>vislog_light_blue <span class="ot">&lt;-</span> <span class="st">"#5C9CE6"</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">open_dataset</span>(<span class="st">"/home/jrs/Área de trabalho/extract data/data/"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Criação dinâmica do segmento direto no escopo do Arrow (sem estourar a RAM)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados) <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">divisao =</span> <span class="fu">substr</span>(cnae, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">segmento_criado =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"10"</span> <span class="sc">~</span> <span class="st">"Alimentos"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"11"</span> <span class="sc">~</span> <span class="st">"Bebidas"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"13"</span> <span class="sc">~</span> <span class="st">"Têxtil"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"14"</span> <span class="sc">~</span> <span class="st">"Vestuário"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"20"</span> <span class="sc">~</span> <span class="st">"Químicos"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"21"</span> <span class="sc">~</span> <span class="st">"Farmacêutica"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"22"</span> <span class="sc">~</span> <span class="st">"Borracha e Plástico"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"23"</span> <span class="sc">~</span> <span class="st">"Minerais não metálicos"</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"24"</span> <span class="sc">~</span> <span class="st">"Metalurgia"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"25"</span> <span class="sc">~</span> <span class="st">"Produtos metálicos"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"26"</span> <span class="sc">~</span> <span class="st">"Eletrônicos"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"27"</span> <span class="sc">~</span> <span class="st">"Equipamentos elétricos"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"28"</span> <span class="sc">~</span> <span class="st">"Máquinas e equipamentos"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"29"</span> <span class="sc">~</span> <span class="st">"Veículos automotores"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"30"</span> <span class="sc">~</span> <span class="st">"Outros equipamentos de transporte"</span>,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"31"</span> <span class="sc">~</span> <span class="st">"Móveis"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"32"</span> <span class="sc">~</span> <span class="st">"Produtos diversos"</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"46"</span> <span class="sc">~</span> <span class="st">"Comércio atacadista"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"47"</span> <span class="sc">~</span> <span class="st">"Comércio varejista"</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>       <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Outros"</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>   ) </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)  <span class="sc">%&gt;%</span>  <span class="fu">kable</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 15%">
+<col style="width: 3%">
+<col style="width: 32%">
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">cnpj_basico</th>
+<th style="text-align: right;">cnpj_ordem</th>
+<th style="text-align: right;">cnpj_dv</th>
+<th style="text-align: left;">razao_social</th>
+<th style="text-align: right;">cnae</th>
+<th style="text-align: right;">atividade</th>
+<th style="text-align: left;">uf</th>
+<th style="text-align: right;">municipio</th>
+<th style="text-align: right;">estabelecimento</th>
+<th style="text-align: left;">situacao</th>
+<th style="text-align: right;">porte</th>
+<th style="text-align: right;">capital_social</th>
+<th style="text-align: left;">divisao</th>
+<th style="text-align: right;">segmento_criado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">00000539</td>
+<td style="text-align: right;">0001</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">REFRIGERANTES BRASILIA LTDA</td>
+<td style="text-align: right;">1122401</td>
+<td style="text-align: right;">Fabricação de refrigerantes</td>
+<td style="text-align: left;">DF</td>
+<td style="text-align: right;">BRASILIA</td>
+<td style="text-align: right;">Matriz</td>
+<td style="text-align: left;">Ativa</td>
+<td style="text-align: right;">Microempresa</td>
+<td style="text-align: right;">3e+06</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">Bebidas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">00000539</td>
+<td style="text-align: right;">0005</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: left;">REFRIGERANTES BRASILIA LTDA</td>
+<td style="text-align: right;">4635401</td>
+<td style="text-align: right;">Comércio atacadista de água mineral</td>
+<td style="text-align: left;">DF</td>
+<td style="text-align: right;">BRASILIA</td>
+<td style="text-align: right;">Filial</td>
+<td style="text-align: left;">Ativa</td>
+<td style="text-align: right;">Microempresa</td>
+<td style="text-align: right;">3e+06</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: right;">Comércio atacadista</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">00000807</td>
+<td style="text-align: right;">0001</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">COMERSUL IMPORTACAO E EXPORTACAO LTDA</td>
+<td style="text-align: right;">4685100</td>
+<td style="text-align: right;">Comércio atacadista de produtos siderúrgicos e metalúrgicos, exceto para construção</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: right;">SAO PAULO</td>
+<td style="text-align: right;">Matriz</td>
+<td style="text-align: left;">Ativa</td>
+<td style="text-align: right;">Demais</td>
+<td style="text-align: right;">5e+04</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: right;">Comércio atacadista</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">00000899</td>
+<td style="text-align: right;">0001</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">INATO COMERCIO DE FIOS LTDA</td>
+<td style="text-align: right;">4689302</td>
+<td style="text-align: right;">Comércio atacadista de fios e fibras beneficiados</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: right;">NOVA ODESSA</td>
+<td style="text-align: right;">Matriz</td>
+<td style="text-align: left;">Ativa</td>
+<td style="text-align: right;">Microempresa</td>
+<td style="text-align: right;">1e+05</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: right;">Comércio atacadista</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">00000917</td>
+<td style="text-align: right;">0002</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">CBS COMERCIO BRASILEIRO DE SUCATAS LTDA</td>
+<td style="text-align: right;">4687701</td>
+<td style="text-align: right;">Comércio atacadista de resíduos de papel e papelão</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: right;">OSASCO</td>
+<td style="text-align: right;">Filial</td>
+<td style="text-align: left;">Ativa</td>
+<td style="text-align: right;">Demais</td>
+<td style="text-align: right;">4e+05</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: right;">Comércio atacadista</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Abertura do dataset (substitua pelo caminho real do seu diretório/arquivo parquet)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dados &lt;- open_dataset("caminho_para_seus_dados_parquet/")</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA: Para fins de renderização deste documento sem a base original, </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># as queries de EDA abaixo assumem que o objeto 'dados' já está mapeado na memória.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="análise-exploratória-e-dimensionamento-tam-sam-e-som" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória-e-dimensionamento-tam-sam-e-som">3. Análise Exploratória e Dimensionamento (TAM, SAM e SOM)</h2>
+<p>Construímos o nosso funil de mercado respondendo a perguntas chave de negócio. A estratégia foca em empresas com estrutura e capital suficientes para adotar uma solução avançada de IA para <em>pricing</em>.</p>
+<section id="o-funil-de-mercado-vislog" class="level3">
+<h3 class="anchored" data-anchor-id="o-funil-de-mercado-vislog">3.1. O Funil de Mercado Vislog</h3>
+<p>Nosso mercado obedece a três recortes principais:</p>
+<ol type="1">
+<li><p><strong>TAM (Mercado Total):</strong> Compreende o cenário macro. Considerando todas as empresas ativas no Brasil dentro dos segmentos mapeados que lidam com alta complexidade de SKUs e necessitam de gestão de preços, Este é o teto absoluto da nossa oportunidade no país.</p></li>
+<li><p><strong>SAM (Mercado Endereçável Útil):</strong> Aplicando um recorte geográfico focado em regiões que concentram a maior maturidade de gestão, adoção de tecnologia e volume financeiro do país. Nosso mercado endereçável viável no médio prazo.</p></li>
+<li><p><strong>SOM (Serviceable Obtainable Market – Mercado Obtível):</strong> Representa a nossa base de captura realista e altamente qualificada para os próximos <strong>12 a 24 meses</strong>. Para chegar a esse mercado potencial, refinamos o <strong>SAM</strong> por meio de três filtros operacionais:</p></li>
+</ol>
+<ul>
+<li><strong>Foco geográfico:</strong> priorizamos os estados estratégicos definidos para cada região analisada (por exemplo, São Paulo no Sudeste, Distrito Federal no Centro-Oeste e Bahia, Ceará e Paraíba no Nordeste).</li>
+<li><strong>Poder de decisão:</strong> consideramos exclusivamente <strong>estabelecimentos classificados como matriz</strong>, direcionando os esforços comerciais para as unidades que concentram o processo de decisão e contratação.</li>
+<li><strong>Maturidade e porte empresarial:</strong> excluímos <strong>Microempresas (ME)</strong>, concentrando a análise em <strong>Empresas de Pequeno Porte (EPP)</strong> e empresas classificadas como <strong>Demais</strong> (médio e grande porte), organizações que apresentam maior complexidade operacional e maior potencial de adoção de soluções de pricing analítico.</li>
+</ul>
+<p>Esse conjunto de critérios resulta em uma estimativa mais realista do mercado efetivamente alcançável no curto e médio prazo. A estratégia comercial prevê uma captura inicial entre <strong>2% e 5%</strong> dessa base, priorizando crescimento sustentável, maior retenção de clientes e elevado <strong>Lifetime Value (LTV)</strong>.</p>
+<hr>
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># 1. Conexão limpa e performática com os dados originais</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> funil_data_SE <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">TAM =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">SAM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SP"</span>, <span class="st">"RJ"</span>, <span class="st">"MG"</span>, <span class="st">"ES"</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">SOM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">==</span> <span class="st">"SP"</span> <span class="sc">&amp;</span> estabelecimento <span class="sc">==</span> <span class="st">"Matriz"</span> <span class="sc">&amp;</span> porte <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Demais"</span>, <span class="st">'Empresa de Pequeno Porte'</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Etapa"</span>, <span class="at">values_to =</span> <span class="st">"Volume"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Etapa =</span> <span class="fu">factor</span>(Etapa, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TAM"</span>, <span class="st">"SAM"</span>, <span class="st">"SOM"</span>)))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>funil_data_S <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">TAM =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">SAM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PR"</span>, <span class="st">"RS"</span>, <span class="st">"SC"</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">SOM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">&amp;</span> estabelecimento <span class="sc">==</span> <span class="st">"Matriz"</span> <span class="sc">&amp;</span> porte <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Demais"</span>, <span class="st">'Empresa de Pequeno Porte'</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>   <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Etapa"</span>, <span class="at">values_to =</span> <span class="st">"Volume"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Etapa =</span> <span class="fu">factor</span>(Etapa, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TAM"</span>, <span class="st">"SAM"</span>, <span class="st">"SOM"</span>)))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>funil_data_NE <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>     <span class="at">TAM =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">SAM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AL"</span>, <span class="st">"BA"</span>, <span class="st">"CE"</span>, <span class="st">"MA"</span>, <span class="st">"PB"</span>, <span class="st">"PE"</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">SOM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BA"</span>, <span class="st">"CE"</span>, <span class="st">"PB"</span>) <span class="sc">&amp;</span> estabelecimento <span class="sc">==</span> <span class="st">"Matriz"</span> <span class="sc">&amp;</span> porte <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Demais"</span>, <span class="st">'Empresa de Pequeno Porte'</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>   <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Etapa"</span>, <span class="at">values_to =</span> <span class="st">"Volume"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Etapa =</span> <span class="fu">factor</span>(Etapa, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TAM"</span>, <span class="st">"SAM"</span>, <span class="st">"SOM"</span>)))</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>funil_data_CO <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>     <span class="at">TAM =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>     <span class="at">SAM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"GO"</span>, <span class="st">"MT"</span>, <span class="st">"MS"</span>, <span class="st">"DF"</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>     <span class="at">SOM =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(uf <span class="sc">==</span> <span class="st">"DF"</span> <span class="sc">&amp;</span> estabelecimento <span class="sc">==</span> <span class="st">"Matriz"</span> <span class="sc">&amp;</span> porte <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Demais"</span>, <span class="st">'Empresa de Pequeno Porte'</span>), <span class="dv">1</span>L, <span class="dv">0</span>L), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>   <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Etapa"</span>, <span class="at">values_to =</span> <span class="st">"Volume"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Etapa =</span> <span class="fu">factor</span>(Etapa, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TAM"</span>, <span class="st">"SAM"</span>, <span class="st">"SOM"</span>)))</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>funil_data_SE <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> Etapa, <span class="at">y =</span> Volume, <span class="at">fill =</span> Etapa)) <span class="sc">+</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(Volume, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)), </span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> vislog_dark,<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TAM"</span> <span class="ot">=</span> vislog_gray, <span class="st">"SAM"</span> <span class="ot">=</span> vislog_light_blue, <span class="st">"SOM"</span> <span class="ot">=</span> vislog_blue)) <span class="sc">+</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Funil de Dimensionamento de Mercado: Sudeste"</span>,</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Vislog: Do Mercado Total Endereçável ao Público Inicial"</span>,</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Quantidade de Empresas"</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">19</span>),</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>funil_data_NE <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> Etapa, <span class="at">y =</span> Volume, <span class="at">fill =</span> Etapa)) <span class="sc">+</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(Volume, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)), </span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> vislog_dark,<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TAM"</span> <span class="ot">=</span> vislog_gray, <span class="st">"SAM"</span> <span class="ot">=</span> vislog_light_blue, <span class="st">"SOM"</span> <span class="ot">=</span> vislog_blue)) <span class="sc">+</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Funil de Dimensionamento de Mercado: Nordeste"</span>,</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Vislog: Do Mercado Total Endereçável ao Público Inicial"</span>,</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Quantidade de Empresas"</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">19</span>),</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>funil_data_S <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> Etapa, <span class="at">y =</span> Volume, <span class="at">fill =</span> Etapa)) <span class="sc">+</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(Volume, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)), </span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> vislog_dark,<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TAM"</span> <span class="ot">=</span> vislog_gray, <span class="st">"SAM"</span> <span class="ot">=</span> vislog_light_blue, <span class="st">"SOM"</span> <span class="ot">=</span> vislog_blue)) <span class="sc">+</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Funil de Dimensionamento de Mercado: Sul"</span>,</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Vislog: Do Mercado Total Endereçável ao Público Inicial"</span>,</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Quantidade de Empresas"</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">19</span>),</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>funil_data_CO <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> Etapa, <span class="at">y =</span> Volume, <span class="at">fill =</span> Etapa)) <span class="sc">+</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(Volume, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)), </span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> vislog_dark ,<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TAM"</span> <span class="ot">=</span> vislog_gray, <span class="st">"SAM"</span> <span class="ot">=</span> vislog_light_blue, <span class="st">"SOM"</span> <span class="ot">=</span> vislog_blue)) <span class="sc">+</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.16</span>))) <span class="sc">+</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Funil de Dimensionamento de Mercado: Centro-Oeste"</span>,</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Vislog: Do Mercado Total Endereçável ao Público Inicial"</span>,</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Quantidade de Empresas"</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">19</span>),</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-funil-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="864">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funil-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-funil-1.png" id="fig-funil-1" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-funil-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-funil-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="864">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funil-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-funil-2.png" id="fig-funil-2" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-funil-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-funil-3" class="quarto-float quarto-figure quarto-figure-center anchored" width="864">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funil-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-funil-3.png" id="fig-funil-3" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-funil-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-funil-4" class="quarto-float quarto-figure quarto-figure-center anchored" width="864">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funil-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-funil-4.png" id="fig-funil-4" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-funil-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#===========================</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros do negócio</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#===========================</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>INSTALACAO <span class="ot">&lt;-</span> <span class="dv">1200</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>MENSALIDADE <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ARR <span class="ot">&lt;-</span> MENSALIDADE <span class="sc">*</span> <span class="dv">12</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>PRIMEIRO_ANO <span class="ot">&lt;-</span> INSTALACAO <span class="sc">+</span> ARR</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#===========================</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados do funil</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#===========================</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>funil <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Regiao =</span> <span class="fu">c</span>(<span class="st">"Sudeste"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Nordeste"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Sul"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Centro-Oeste"</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">TAM =</span> <span class="fu">c</span>(<span class="dv">1200000</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>          <span class="dv">1200000</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>          <span class="dv">1200000</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>          <span class="dv">1200000</span>),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">SAM =</span> <span class="fu">c</span>(<span class="dv">561760</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>          <span class="dv">168631</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>          <span class="dv">259452</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>          <span class="dv">108976</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">SOM =</span> <span class="fu">c</span>(<span class="dv">76973</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>          <span class="dv">13094</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>          <span class="dv">16727</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>          <span class="dv">2283</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co">#===========================</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo financeiro</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">#===========================</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>mercado_valor <span class="ot">&lt;-</span> funil <span class="sc">%&gt;%</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Receita de implantação</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">TAM_Instalacao =</span> TAM <span class="sc">*</span> INSTALACAO,</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">SAM_Instalacao =</span> SAM <span class="sc">*</span> INSTALACAO,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">SOM_Instalacao =</span> SOM <span class="sc">*</span> INSTALACAO,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Receita recorrente anual</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">TAM_ARR =</span> TAM <span class="sc">*</span> ARR,</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">SAM_ARR =</span> SAM <span class="sc">*</span> ARR,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">SOM_ARR =</span> SOM <span class="sc">*</span> ARR,</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Receita potencial do primeiro ano</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">TAM_Primeiro_Ano =</span> TAM <span class="sc">*</span> PRIMEIRO_ANO,</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">SAM_Primeiro_Ano =</span> SAM <span class="sc">*</span> PRIMEIRO_ANO,</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">SOM_Primeiro_Ano =</span> SOM <span class="sc">*</span> PRIMEIRO_ANO</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="dimensionamento-financeiro-do-mercado" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionamento-financeiro-do-mercado">Dimensionamento Financeiro do Mercado</h2>
+<p>Considerando o modelo de monetização da Vislog, composto por uma <strong>taxa única de implantação de R$ 1.200</strong> e uma <strong>mensalidade de R$ 500</strong> (equivalente a <strong>R$ 6.000 de receita recorrente anual por cliente</strong>), estimou-se o potencial financeiro do mercado para cada etapa do funil.</p>
+<p>Neste relatório, considera-se a receita potencial do <strong>primeiro ano</strong>, equivalente a:</p>
+<p>[ Receita_{1ºAno} = Instalação + (Mensalidade ) ]</p>
+<p>Ou seja,</p>
+<p>[ R$1.200 + (R$500 )=R$7.200 ]</p>
+<p>por cliente.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>resumo <span class="ot">&lt;-</span> mercado_valor <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    Região <span class="ot">=</span> Regiao,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">TAM (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      TAM_Primeiro_Ano,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">prefix =</span> <span class="st">"R$ "</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimal.mark =</span> <span class="st">","</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">accuracy =</span> <span class="dv">1</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">SAM (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      SAM_Primeiro_Ano,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">prefix =</span> <span class="st">"R$ "</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimal.mark =</span> <span class="st">","</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">accuracy =</span> <span class="dv">1</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">SOM (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      SOM_Primeiro_Ano,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">prefix =</span> <span class="st">"R$ "</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimal.mark =</span> <span class="st">","</span>,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">accuracy =</span> <span class="dv">1</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  resumo,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Tabela 1. Potencial Financeiro do Mercado por Região"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Tabela 1. Potencial Financeiro do Mercado por Região</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Região</th>
+<th style="text-align: right;">TAM (1º Ano)</th>
+<th style="text-align: right;">SAM (1º Ano)</th>
+<th style="text-align: right;">SOM (1º Ano)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sudeste</td>
+<td style="text-align: right;">R$ 8.640.000.000</td>
+<td style="text-align: right;">R$ 4.044.672.000</td>
+<td style="text-align: right;">R$ 554.205.600</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nordeste</td>
+<td style="text-align: right;">R$ 8.640.000.000</td>
+<td style="text-align: right;">R$ 1.214.143.200</td>
+<td style="text-align: right;">R$ 94.276.800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sul</td>
+<td style="text-align: right;">R$ 8.640.000.000</td>
+<td style="text-align: right;">R$ 1.868.054.400</td>
+<td style="text-align: right;">R$ 120.434.400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Centro-Oeste</td>
+<td style="text-align: right;">R$ 8.640.000.000</td>
+<td style="text-align: right;">R$ 784.627.200</td>
+<td style="text-align: right;">R$ 16.437.600</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="totais-nacionais" class="level3">
+<h3 class="anchored" data-anchor-id="totais-nacionais">Totais Nacionais</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>totais <span class="ot">&lt;-</span> mercado_valor <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">TAM (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(TAM_Primeiro_Ano),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">SAM (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(SAM_Primeiro_Ano),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">SOM (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(SOM_Primeiro_Ano)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">dollar</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">prefix =</span> <span class="st">"R$ "</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimal.mark =</span> <span class="st">","</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">accuracy =</span> <span class="dv">1</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  totais,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Tabela 2. Mercado Potencial Nacional"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>),</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Tabela 2. Mercado Potencial Nacional</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">TAM (1º Ano)</th>
+<th style="text-align: right;">SAM (1º Ano)</th>
+<th style="text-align: right;">SOM (1º Ano)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">R$ 34.560.000.000</td>
+<td style="text-align: right;">R$ 7.911.496.800</td>
+<td style="text-align: right;">R$ 785.354.400</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="principais-resultados" class="level3">
+<h3 class="anchored" data-anchor-id="principais-resultados">Principais Resultados</h3>
+<ul>
+<li><strong>TAM (Total Addressable Market):</strong> representa o faturamento potencial máximo considerando a adoção da solução por todas as empresas elegíveis.</li>
+<li><strong>SAM (Serviceable Available Market):</strong> representa a parcela do mercado efetivamente atendível pela Vislog, considerando seu foco estratégico.</li>
+<li><strong>SOM (Serviceable Obtainable Market):</strong> representa a estimativa conservadora da participação de mercado inicialmente capturável.</li>
+</ul>
+<p>Todos os valores apresentados correspondem à <strong>receita potencial do primeiro ano de contrato</strong>, composta pela taxa de implantação (R$ 1.200) acrescida de doze mensalidades (R$ 500/mês), totalizando <strong>R$ 7.200 por cliente</strong>.</p>
+</section>
+</section>
+<section id="cenário-conservador-captura-de-3-do-som" class="level2">
+<h2 class="anchored" data-anchor-id="cenário-conservador-captura-de-3-do-som">Cenário Conservador: Captura de 3% do SOM</h2>
+<p>Embora o SOM represente o mercado inicialmente alcançável, é pouco provável que toda essa parcela seja capturada no curto prazo. Dessa forma, apresenta-se um cenário conservador considerando a aquisição de <strong>3% do SOM</strong>, permitindo estimar uma projeção inicial de faturamento.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>cenario_3 <span class="ot">&lt;-</span> mercado_valor <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Clientes =</span> <span class="fu">round</span>(SOM <span class="sc">*</span> <span class="fl">0.03</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Receita_Primeiro_Ano =</span> Clientes <span class="sc">*</span> PRIMEIRO_ANO</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    Região <span class="ot">=</span> Regiao,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Clientes (3% SOM)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">comma</span>(Clientes, <span class="at">big.mark =</span> <span class="st">"."</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Receita Potencial (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      Receita_Primeiro_Ano,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">prefix =</span> <span class="st">"R$ "</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimal.mark =</span> <span class="st">","</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">accuracy =</span> <span class="dv">1</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  cenario_3,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Tabela 3. Cenário Conservador considerando a captura de 3% do SOM"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Tabela 3. Cenário Conservador considerando a captura de 3% do SOM</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Região</th>
+<th style="text-align: right;">Clientes (3% SOM)</th>
+<th style="text-align: right;">Receita Potencial (1º Ano)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sudeste</td>
+<td style="text-align: right;">2.309</td>
+<td style="text-align: right;">R$ 16.624.800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nordeste</td>
+<td style="text-align: right;">393</td>
+<td style="text-align: right;">R$ 2.829.600</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sul</td>
+<td style="text-align: right;">502</td>
+<td style="text-align: right;">R$ 3.614.400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Centro-Oeste</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">R$ 489.600</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="total-nacional" class="level3">
+<h3 class="anchored" data-anchor-id="total-nacional">Total Nacional</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>total_3 <span class="ot">&lt;-</span> mercado_valor <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Clientes =</span> <span class="fu">round</span>(<span class="fu">sum</span>(SOM) <span class="sc">*</span> <span class="fl">0.03</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Receita =</span> Clientes <span class="sc">*</span> PRIMEIRO_ANO</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Clientes Totais</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">comma</span>(Clientes, <span class="at">big.mark =</span> <span class="st">"."</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Receita Potencial (1º Ano)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      Receita,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">prefix =</span> <span class="st">"R$ "</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimal.mark =</span> <span class="st">","</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">accuracy =</span> <span class="dv">1</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  total_3,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Tabela 4. Projeção Nacional considerando a captura de 3% do SOM"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"r"</span>,<span class="st">"r"</span>),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Tabela 4. Projeção Nacional considerando a captura de 3% do SOM</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Clientes Totais</th>
+<th style="text-align: right;">Receita Potencial (1º Ano)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3.272</td>
+<td style="text-align: right;">R$ 23.558.400</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Neste cenário conservador, a Vislog conquistaria aproximadamente <strong>3% do mercado inicialmente alcançável (SOM)</strong>, correspondendo a uma estimativa de clientes efetivamente convertidos e ao faturamento potencial do primeiro ano. Essa abordagem fornece uma projeção mais realista para os primeiros anos de operação, sendo adequada para análises de viabilidade econômica e planejamento comercial.</p>
+</section>
+<section id="onde-está-concentrada-a-maior-parte-do-nosso-mercado" class="level3">
+<h3 class="anchored" data-anchor-id="onde-está-concentrada-a-maior-parte-do-nosso-mercado">3.2. Onde está concentrada a maior parte do nosso mercado?</h3>
+<p>Para consolidar o SAM, validamos a distribuição geográfica. A ferramenta de precificação gera mais impacto onde o volume de transações e a concorrência são maiores.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_estados <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(uf, <span class="at">name =</span> <span class="st">"total_empresas"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_empresas)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(uf, total_empresas), <span class="at">y =</span> total_empresas)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> vislog_blue, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Estados com Maior Concentração de Empresas"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Base de empresas ativas (Validação de SAM)"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Estado (UF)"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Volume de Empresas"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>plot_estados</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-geo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-geo-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Top 10 Estados com Maior Concentração de Empresas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qual-é-o-perfil-de-governança-corporativa" class="level3">
+<h3 class="anchored" data-anchor-id="qual-é-o-perfil-de-governança-corporativa">3.3. Qual é o perfil de governança corporativa?</h3>
+<p>Para vender uma solução estratégica que muda a margem da empresa, precisamos focar nos tomadores de decisão (Matrizes) e entender o tamanho da estrutura (Porte).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_matriz_porte <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>, porte <span class="sc">!=</span> <span class="st">"Não informado"</span>, <span class="sc">!</span><span class="fu">is.na</span>(porte)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(porte, estabelecimento, <span class="at">name =</span> <span class="st">"total"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(porte, <span class="sc">-</span>total), <span class="at">y =</span> total, <span class="at">fill =</span> estabelecimento)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Matriz"</span> <span class="ot">=</span> vislog_blue, <span class="st">"Filial"</span> <span class="ot">=</span> vislog_light_blue)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Estrutura Corporativa por Porte"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Identificação de tomadores de decisão (Foco no SOM)"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Porte da Empresa"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Quantidade"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Tipo"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>plot_matriz_porte</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-governanca" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-governanca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-governanca-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-governanca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Estrutura Corporativa por Porte (Matriz vs.&nbsp;Filial)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qual-é-o-poder-de-compra-do-nosso-cliente-alvo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-é-o-poder-de-compra-do-nosso-cliente-alvo">3.4. Qual é o poder de compra do nosso cliente alvo?</h3>
+<p>Analisar o Capital Social (em escala logarítmica, devido aos valores extremos) nos permite balizar o <em>Pricing</em> do nosso próprio SaaS. Empresas de capital irrisório não têm orçamento para projetos robustos de IA.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_capital <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>, porte <span class="sc">!=</span> <span class="st">"Não informado"</span>, capital_social <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(porte, capital_social) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> porte, <span class="at">y =</span> capital_social, <span class="at">fill =</span> porte)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">outlier.alpha =</span> <span class="fl">0.1</span>, <span class="at">outlier.color =</span> vislog_gray) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">prefix =</span> <span class="st">"R$ "</span>, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribuição do Capital Social por Porte (Escala Logarítmica)"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Avaliação de poder de compra e ticket médio para licenças SaaS"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Porte da Empresa"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Capital Social (Log10)"</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">15</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>plot_capital</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-capital" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-capital-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-capital-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-capital-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Poder de Compra: Distribuição de Capital Social
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="perfil-de-clientes-potenciais-por-segmento-e-poder-de-compra" class="level4">
+<h4 class="anchored" data-anchor-id="perfil-de-clientes-potenciais-por-segmento-e-poder-de-compra">Perfil de Clientes Potenciais por Segmento e Poder de Compra</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Criação do data frame com os dados consolidados da sua consulta</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(segmento_criado) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarise</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">total_empresas =</span> <span class="fu">n</span>(),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">capital_mediano =</span> <span class="fu">median</span>(capital_social, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># Mediana é melhor para evitar distorções de outliers</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>         )<span class="sc">%&gt;%</span>  </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(capital_mediano)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">collect</span>() <span class="ot">-&gt;</span> tabela_segmentos</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatação executiva dos dados para o relatório final</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>tabela_segmentos <span class="sc">%&gt;%</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Total de Empresas</span><span class="st">`</span> <span class="ot">=</span> scales<span class="sc">::</span><span class="fu">number</span>(total_empresas, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Capital Social Mediano</span><span class="st">`</span> <span class="ot">=</span> scales<span class="sc">::</span><span class="fu">dollar</span>(capital_mediano, <span class="at">prefix =</span> <span class="st">"R</span><span class="sc">\\</span><span class="st">$"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Segmento =</span> segmento_criado, </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Total de Empresas</span><span class="st">`</span>, </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Capital Social Mediano</span><span class="st">`</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Segmento"</span>, <span class="st">"Total de Empresas"</span>, <span class="st">"Capital Social Mediano"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-perfil-segmentos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-perfil-segmentos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Análise de Volume e Capital Mediano por Segmento de Mercado
+</figcaption>
+<div aria-describedby="tbl-perfil-segmentos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Segmento</th>
+<th style="text-align: right;">Total de Empresas</th>
+<th style="text-align: right;">Capital Social Mediano</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Farmacêutica</td>
+<td style="text-align: right;">1.319</td>
+<td style="text-align: right;">R$300.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Comércio atacadista</td>
+<td style="text-align: right;">394.872</td>
+<td style="text-align: right;">R$100.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Produtos diversos</td>
+<td style="text-align: right;">1.478</td>
+<td style="text-align: right;">R$100.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Químicos</td>
+<td style="text-align: right;">15.821</td>
+<td style="text-align: right;">R$100.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veículos automotores</td>
+<td style="text-align: right;">4.560</td>
+<td style="text-align: right;">R$100.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bebidas</td>
+<td style="text-align: right;">9.340</td>
+<td style="text-align: right;">R$70.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Borracha e Plástico</td>
+<td style="text-align: right;">18.793</td>
+<td style="text-align: right;">R$70.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minerais não metálicos</td>
+<td style="text-align: right;">19.189</td>
+<td style="text-align: right;">R$70.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Máquinas e equipamentos</td>
+<td style="text-align: right;">3.795</td>
+<td style="text-align: right;">R$70.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Equipamentos elétricos</td>
+<td style="text-align: right;">5.760</td>
+<td style="text-align: right;">R$60.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Comércio varejista</td>
+<td style="text-align: right;">136.736</td>
+<td style="text-align: right;">R$50.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outros</td>
+<td style="text-align: right;">15.045</td>
+<td style="text-align: right;">R$20.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Têxtil</td>
+<td style="text-align: right;">10.074</td>
+<td style="text-align: right;">R$10.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alimentos</td>
+<td style="text-align: right;">109.598</td>
+<td style="text-align: right;">R$8.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Móveis</td>
+<td style="text-align: right;">132.463</td>
+<td style="text-align: right;">R$5.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Produtos metálicos</td>
+<td style="text-align: right;">150.205</td>
+<td style="text-align: right;">R$5.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vestuário</td>
+<td style="text-align: right;">190.952</td>
+<td style="text-align: right;">R$5.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="análise-do-cenário-atual-a-dor-do-cliente" class="level2">
+<h2 class="anchored" data-anchor-id="análise-do-cenário-atual-a-dor-do-cliente">4. Análise do Cenário Atual: A Dor do Cliente</h2>
+<section id="cenário-competitivo-e-posicionamento-de-mercado" class="level4">
+<h4 class="anchored" data-anchor-id="cenário-competitivo-e-posicionamento-de-mercado">Cenário Competitivo e Posicionamento de Mercado</h4>
+<p>A tabela abaixo apresenta o mapeamento dos principais competidores mapeados no mercado de inteligência de preços e o posicionamento estratégico diferenciado da <strong>Vislog</strong>, cruzando o foco de atuação de cada player com os filtros e segmentos identificados em nossa base de dados cadastrais (<code>cnae</code>).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Player</th>
+<th style="text-align: left;">Foco de Atuação</th>
+<th style="text-align: left;">Intersecção com a Base (<code>cnae</code>)</th>
+<th style="text-align: left;">Core Tecnológico</th>
+<th style="text-align: left;">Vulnerabilidade / Lacuna do Concorrente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Precifica</strong></td>
+<td style="text-align: left;">Varejo Geral, E-commerce e Indústria</td>
+<td style="text-align: left;">Segmentos amplos, comércio eletrônico e indústrias macro.</td>
+<td style="text-align: left;"><em>Web Crawlers</em> em Nuvem e Correspondência de EAN</td>
+<td style="text-align: left;">Solução excessivamente genérica; falta profundidade nas regras logísticas, tributárias e regulatórias de nichos complexos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>InfoPrice</strong></td>
+<td style="text-align: left;">Supermercados e Farmácias</td>
+<td style="text-align: left;">Filtro na base: <code>segmento == "FARMACIA"</code> e CNAEs de varejo alimentar.</td>
+<td style="text-align: left;"><em>Big Data</em> de campo e Regras de Margem Dinâmica</td>
+<td style="text-align: left;">Fortíssimo foco em varejo físico e monitoramento de ponta (gôndola). Abre espaço para quem foca no <em>backoffice</em>, distribuição e inteligência B2B.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Proffer</strong></td>
+<td style="text-align: left;">Farmácias, Distribuição e Indústrias</td>
+<td style="text-align: left;"><strong>Concorrente Direto.</strong> Filtro na base: <code>segmento %in% c("FARMACIA", "DISTRIBUIDORA", "INDUSTRIA")</code>.</td>
+<td style="text-align: left;"><em>Machine Learning</em> e Modelos Preditivos de Elasticidade</td>
+<td style="text-align: left;">É o posicionamento mais próximo. Focam muito na elasticidade do preço puro, mas deixam de lado as complexidades de frete, malha e custos dinâmicos de entrega.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Pricemet</strong></td>
+<td style="text-align: left;">Inteligência de Mercado e Projetos Customizados</td>
+<td style="text-align: left;">Atende demandas sob medida de grandes corporações.</td>
+<td style="text-align: left;">Bancos Relacionais e Dashboards de <em>Power BI</em> / Tableau</td>
+<td style="text-align: left;">Modelo de atuação muito baseado em horas de consultoria tradicional, o que torna a solução cara, lenta de implementar e pouco escalável para médias empresas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><mark><strong>VISLOG</strong></mark></td>
+<td style="text-align: left;"><strong>Inteligência de Precificação Integrada à Logística B2B</strong></td>
+<td style="text-align: left;"><strong>Core total da base:</strong> <code>FARMACIA DISTRIBUIDORAS INDUSTRIA e Varejo</code></td>
+<td style="text-align: left;"><em>**Machine** Learning</em> Estatiística Avançada; Elasticidade<strong>; Modelos Mistos;IA Generativa</strong></td>
+<td style="text-align: left;"><strong>Nossa Oportunidade:</strong> Somos uma plataforma especializada em inteligência de preços que utiliza algoritmos avançados para precificar de forma dinâmica. A única solução do mercado a processar variáveis de alta complexidade para otimização de margens em tempo real, automatizando a tomada de decisão em larga escala via interface em linguagem natural.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>O mercado brasileiro ainda é tratada de forma rudimentar:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>O “Achismo” e o <em>Feeling</em>:</strong> Decisões baseadas puramente na experiência empírica do gestor de contas.</p></li>
+<li><p><strong>A Regra do “Custo + Markup Linear”:</strong> Utilização de ERPs que apenas adicionam uma margem fixa sobre o custo do produto.</p></li>
+</ol>
+<p><strong>A grande falha:</strong> Ao aplicar o mesmo markup linear no portfólio inteiro, a empresa perde volume de vendas nos itens <strong>elásticos</strong> (onde o cliente é sensível a preço) e deixa dinheiro na mesa nos itens <strong>inelásticos</strong> (onde o cliente pagaria mais).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="diferenciais-competitivos-da-vislog" class="level2">
+<h2 class="anchored" data-anchor-id="diferenciais-competitivos-da-vislog">5. Diferenciais Competitivos da Vislog</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 38%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pilar</th>
+<th>Como a VISLOG resolve</th>
+<th>Diferencial Competitivo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Ciência de Dados Aplicada</strong></td>
+<td>Utiliza modelos estatísticos avançados para estimar elasticidade de preços, sensibilidade da demanda, impacto de promoções e projeções de faturamento e margem.</td>
+<td>As decisões deixam de ser baseadas em regras fixas ou experiência do gestor e passam a ser sustentadas por evidências estatísticas e modelos preditivos.</td>
+</tr>
+<tr class="even">
+<td><strong>Inteligência Comercial Integrada</strong></td>
+<td>Consolida dados de vendas, concorrência, logística, tributação, custos e indicadores operacionais em uma única plataforma analítica.</td>
+<td>A precificação deixa de analisar apenas o preço do concorrente e passa a considerar toda a cadeia de formação de margem e rentabilidade.</td>
+</tr>
+<tr class="odd">
+<td><strong>IA Generativa como Copiloto</strong></td>
+<td>Um agente inteligente interpreta os dados, responde perguntas em linguagem natural, gera relatórios automáticos e explica as recomendações produzidas pelos modelos analíticos.</td>
+<td>Democratiza o acesso à inteligência analítica, reduzindo a dependência de especialistas em pricing e acelerando a tomada de decisão.</td>
+</tr>
+<tr class="even">
+<td><strong>Arquitetura Escalável de Dados</strong></td>
+<td>Processamento otimizado para milhões de registros utilizando Apache Arrow, bancos analíticos e integração via APIs com ERPs e demais sistemas corporativos.</td>
+<td>Permite análises de milhares de SKUs em poucos minutos, mantendo alta performance mesmo em operações de grande porte.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="diferencial-científico" class="level2">
+<h2 class="anchored" data-anchor-id="diferencial-científico">5.1. Diferencial Científico</h2>
+<p>O principal ativo tecnológico da VISLOG é seu núcleo de modelagem estatística, desenvolvido para transformar grandes volumes de dados operacionais em recomendações objetivas de negócio.</p>
+<p>Entre as principais técnicas empregadas destacam-se:</p>
+<ul>
+<li><p><strong>Modelos Lineares Mistos (Mixed-Effects Models):</strong> utilizados para separar efeitos globais do mercado dos efeitos específicos de clientes, regiões, canais de venda e características operacionais, aumentando a precisão das estimativas de elasticidade e demanda.</p></li>
+<li><p><strong>Modelos de Regressão e Inferência Estatística:</strong> empregados para mensurar a relação entre preço, volume vendido, margem, custos logísticos, tributação e demais variáveis de negócio, permitindo simular cenários antes da implementação de qualquer alteração comercial.</p></li>
+<li><p><strong>Modelagem Preditiva:</strong> utilizada para antecipar impactos financeiros, identificar oportunidades de ganho de margem e recomendar estratégias de precificação baseadas em dados históricos e comportamento do mercado.</p></li>
+</ul>
+</section>
+<section id="arquitetura-tecnológica" class="level2">
+<h2 class="anchored" data-anchor-id="arquitetura-tecnológica">5.2 Arquitetura Tecnológica</h2>
+<p>A plataforma foi concebida para suportar ambientes corporativos de grande escala, sendo composta por:</p>
+<ul>
+<li><strong>Camada de Integração:</strong> APIs REST para conexão com ERPs, CRMs e sistemas legados.</li>
+<li><strong>Camada de Dados:</strong> processamento analítico utilizando Apache Arrow e bancos relacionais de alta performance.</li>
+<li><strong>Camada Analítica:</strong> modelos estatísticos, algoritmos de Machine Learning e mecanismos de otimização de preços.</li>
+<li><strong>Camada de Inteligência Artificial:</strong> agente de IA Generativa responsável por explicar resultados, produzir relatórios e interagir com usuários em linguagem natural.</li>
+<li><strong>Camada de Visualização:</strong> dashboards executivos com indicadores de pricing, margem, elasticidade, competitividade, logística e simulações de cenários.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    %% Definições de Estilo (Paleta Vislog)
+    classDef fontes fill:#1E2F4D,stroke:#4D8CFF,stroke-width:2px,color:#FFFFFF;
+    classDef Entrada fill:#182B49,stroke:#669DFF,stroke-width:2px,color:#FFFFFF;
+    classDef motor fill:#253959,stroke:#3B76E5,stroke-width:2px,color:#FFFFFF;
+    classDef ia fill:#4D8CFF,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef outputs fill:#121D31,stroke:#8AABDA,stroke-width:2px,color:#FFFFFF;
+
+    %% Estrutura do Fluxo
+    subgraph Grupo_Entrada ["Fontes de Dados"]
+        A1["ERP"]
+        A2["CRM"]
+        A3["Custos"]
+        A4["Logística"]
+        A5["Concorrência"]
+        A6["Tributação"]
+    end
+
+    B["VISLOG Intelligence Engine"]
+
+    subgraph Core_Cientifico ["Core Científico"]
+        C1["Modelos Estatísticos"]
+        C2["Elasticidade"]
+        C3["Machine Learning"]
+        C4["Otimização"]
+    end
+
+    D["IA Generativa"]
+
+    subgraph Grupo_Outputs ["Resultados de Saída"]
+        E1["Preço Ótimo"]
+        E2["Maior Margem"]
+        E3["Maior Competitividade"]
+        E4["Relatórios em Segundos"]
+        E5["Explicações em Linguagem Natural"]
+    end
+
+    %% Conexões
+    Grupo_Entrada --&gt; B
+    B --&gt; Core_Cientifico
+    Core_Cientifico --&gt; D
+    
+    D --&gt; E1
+    D --&gt; E2
+    D --&gt; E3
+    D --&gt; E4
+    D --&gt; E5
+
+    %% Aplicação das Cores (Classes) aos Nós
+    class A1,A2,A3,A4,A5,A6 fontes;
+    class B Entrada;
+    class C1,C2,C3,C4 motor;
+    class D ia;
+    class E1,E2,E3,E4,E5 outputs;
+
+    %% Estilização tracejada para os subgrupos (mantém o visual limpo no Dark Mode)
+    style Grupo_Entrada fill:none,stroke:#4D8CFF,stroke-width:1px,stroke-dasharray: 5 5,color:#FFFFFF
+    style Core_Cientifico fill:none,stroke:#3B76E5,stroke-width:1px,stroke-dasharray: 5 5,color:#FFFFFF
+    style Grupo_Outputs fill:none,stroke:#8AABDA,stroke-width:1px,stroke-dasharray: 5 5,color:#FFFFFF
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="modelo-de-negócio-e-estratégia-de-precificação" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-de-negócio-e-estratégia-de-precificação">6. Modelo de Negócio e Estratégia de Precificação</h2>
+<p>A <strong>Vislog</strong> opera sob o modelo <strong>SaaS B2B (Software as a Service)</strong> com receita recorrente mensal e anual previsível. O modelo elimina custos inviáveis de consultoria tradicional e adota uma precificação baseada no valor gerado e na complexidade da operação do cliente (<em>Value &amp; Volume Pricing</em>).</p>
+<section id="pilares-da-cobrança" class="level4">
+<h4 class="anchored" data-anchor-id="pilares-da-cobrança">Pilares da Cobrança</h4>
+<ul>
+<li><strong>Setup Fee (Taxa de Implementação):</strong> Cobrada uma única vez. Cobre a integração com o ERP/CRM do cliente e a modelagem inicial da malha logística.</li>
+<li><strong>Assinatura Recorrente Mensal (SaaS):</strong> Faixas de preço indexadas à complexidade operacional do cliente (volume de SKUs monitorados e quantidade de filiais/UFs).</li>
+<li><strong>Add-ons (Módulos Adicionais):</strong> Cobranças sob demanda para simulações fiscais interestaduais complexas e conexões extras de APIs de distribuidores.</li>
+</ul>
+</section>
+<section id="matriz-de-planos-estratégicos" class="level3">
+<h3 class="anchored" data-anchor-id="matriz-de-planos-estratégicos">6.2. Matriz de Planos Estratégicos</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Plano</strong></th>
+<th><strong>Segmento</strong></th>
+<th><strong>Objetivo</strong></th>
+<th><strong>Valor Entregue</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Retail</strong></td>
+<td>Farmácias e Redes de Farmácias</td>
+<td>Maximizar a margem e a competitividade no varejo farmacêutico por meio de precificação baseada em dados.</td>
+<td>Pricing dinâmico, análise de elasticidade, monitoramento de concorrência, recomendações automáticas de preços e dashboards gerenciais.</td>
+</tr>
+<tr class="even">
+<td><strong>Distribution</strong></td>
+<td>Distribuidores Farmacêuticos</td>
+<td>Otimizar preços considerando custos logísticos, tributação e rentabilidade por cliente e região.</td>
+<td>Simulações de margem, análise de impacto de frete e ICMS, políticas comerciais, inteligência logística e recomendações de precificação dinâmica.</td>
+</tr>
+<tr class="odd">
+<td><strong>Enterprise</strong></td>
+<td>Indústrias e Grandes Operações de Varejo</td>
+<td>Definir estratégias corporativas de precificação utilizando modelos científicos e inteligência artificial.</td>
+<td>Modelos estatísticos avançados, Machine Learning, IA Generativa, integrações via APIs, ambientes dedicados, simulações em larga escala e suporte especializado.</td>
+</tr>
+</tbody>
+</table>
+<section id="viabilidade-econômica-da-base-de-clientes" class="level4">
+<h4 class="anchored" data-anchor-id="viabilidade-econômica-da-base-de-clientes">Viabilidade Econômica da Base de Clientes</h4>
+<p>Para garantir a aderência dos planos ao mercado, analisamos a segmentação</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação analítica com base na capacidade financeira/tamanho cadastral</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>analise_faixas <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    situacao <span class="sc">==</span> <span class="st">"Ativa"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adicione filtros de segmento se necessário, ex: &amp; segmento %in% c("FARMACIA", "DISTRIBUIDORA")</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Perfil_Cliente =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      capital_social <span class="sc">&lt;=</span> <span class="dv">150000</span> <span class="sc">~</span> <span class="st">"Essential (Pequeno/Médio)"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      capital_social <span class="sc">&gt;</span> <span class="dv">150000</span> <span class="sc">&amp;</span> capital_social <span class="sc">&lt;=</span> <span class="dv">1000000</span> <span class="sc">~</span> <span class="st">"Pro (Grande Regional)"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      capital_social <span class="sc">&gt;</span> <span class="dv">1000000</span> <span class="sc">~</span> <span class="st">"Enterprise (Nacional)"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Não Informado"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Perfil_Cliente) <span class="sc">%&gt;%</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span> <span class="co"># Agregação performática com arrow</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Perfil_Cliente <span class="sc">!=</span> <span class="st">"Não Informado"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentual =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(analise_faixas, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Perfil_Cliente, n), <span class="at">y =</span> n, <span class="at">fill =</span> Perfil_Cliente)) <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(percentual, <span class="at">accuracy =</span> <span class="fl">0.1</span>)), </span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span>.<span class="dv">2</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> vislog_dark) <span class="sc">+</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Essential (Pequeno/Médio)"</span> <span class="ot">=</span> vislog_gray, </span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Pro (Grande Regional)"</span> <span class="ot">=</span> vislog_light_blue, </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Enterprise (Nacional)"</span> <span class="ot">=</span> vislog_blue</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>)), <span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Aderência Volumétrica do Modelo de Negócio"</span>,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Divisão de clientes ativos aptos para cada camada de planos da Vislog"</span>,</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Quantidade de Empresas"</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> vislog_dark),</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-precificacao" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-precificacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="relatorio_files/figure-html/fig-precificacao-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-precificacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Distribuição do Mercado Alvo por Faixa de Complexidade Operacional
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="proposta-de-valor" class="level2">
+<h2 class="anchored" data-anchor-id="proposta-de-valor">7.Proposta de Valor</h2>
+<p>Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a <strong>VISLOG</strong> transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra <strong>estatística, inteligência artificial, logística, tributação e inteligência comercial</strong> para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.</p>
+<p>– Nosso foco imediato é o avanço para Provas de Conceito (PoCs) baseadas neste perfil ideal de cliente mapeado (SOM), visando mensurar o ganho percentual na margem de contribuição (última linha do DRE) em ambiente real de operação.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
