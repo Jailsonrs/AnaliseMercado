@@ -55,7 +55,7 @@ vislog_dark <- "#282828"
 vislog_gray <- "#E0E0E0"
 vislog_light_blue <- "#5C9CE6"
 
-dados <- arrow::open_dataset("/home/jrs/Área de trabalho/extract data/data/")
+dados <- arrow::open_dataset("../data")
 
 # 2. Criação dinâmica do segmento direto no escopo do Arrow (sem estourar a RAM)
 dados <- data.frame(dados) %>%
