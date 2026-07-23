@@ -830,13 +830,31 @@ ggplot(analise_faixas, aes(x = reorder(Perfil_Cliente, n), y = n, fill = Perfil_
   )
 ```
 
+### 6.3. Estratégias de Aquisição
+
+::: {#fig-estrategia fig-align="center"}
+
+![](images/Estrategia_por_cenario.png){width="100%"}
+
+Estratégia por cenário - Aquisição
+:::
+
+
+::: {#fig-estrategia fig-align="center"}
+
+![](images/proximospassos.png){width="100%"}
+
+Estratégia por cenário - Aquisição
+:::
+
+
 ## 7.Proposta de Valor
 
 Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a VISLOG transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra estatística, inteligência artificial, logística, tributação e inteligência comercial para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.
 
 ## 8. Considerações Finais
 
-O estudo evidencia que a VISLOG está inserida em um mercado amplo, relevante e com capacidade financeira para a adoção de soluções especializadas em precificação. O dimensionamento realizado aponta para um SAM nacional de R$ 7,91 bilhões e um SOM de R$ 785,35 milhões no primeiro ano. Mesmo em um cenário conservador, considerando a captura de 3% do mercado inicialmente alcançável, o potencial estimado corresponde a 3.272 clientes e a uma receita de R$ 23,56 milhões no primeiro ano.
+O estudo evidencia que a VISLOG está inserida em um mercado amplo, relevante e com capacidade financeira para a adoção de soluções especializadas em precificação. O dimensionamento realizado aponta para um **SAM nacional de R$ 7,91 bilhões e um SOM de R$ 785,35 milhões no primeiro ano**. **Mesmo em um cenário conservador, considerando a captura de 3% do mercado inicialmente alcançável, o potencial estimado corresponde a 3.272 clientes e a uma receita de R$ 23,56 milhões no primeiro ano.**
 
 Além do potencial financeiro, a análise confirma a existência de uma dor recorrente nas empresas dos segmentos avaliados. A definição de preços ainda depende, em grande parte, de processos manuais, regras lineares e análises fragmentadas, que não consideram de forma integrada os efeitos da demanda, dos custos logísticos, da tributação e da concorrência sobre a rentabilidade. É nesse contexto que a VISLOG se posiciona: não apenas como uma ferramenta de monitoramento, mas como uma plataforma de apoio à decisão capaz de transformar dados operacionais em recomendações objetivas de negócio.
 
@@ -846,3 +864,13 @@ Com base nos resultados apresentados, o próximo passo consiste na realização 
 
 Concluímos, portanto, que existem fundamentos mercadológicos, financeiros e tecnológicos suficientes para o avanço da solução. A etapa seguinte será transformar esse potencial identificado em resultados comprovados, demonstrando que uma precificação orientada por dados pode produzir ganhos consistentes e sustentáveis para os clientes.
 
+---
+
+
+<div style="text-align:center;">
+
+<img src="images/vislog.svg" width="220" style="filter: brightness(0);">
+
+
+
+</div>
