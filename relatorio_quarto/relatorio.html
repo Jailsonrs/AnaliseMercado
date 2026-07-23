@@ -116,6 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#matriz-de-planos-estratégicos" id="toc-matriz-de-planos-estratégicos" class="nav-link" data-scroll-target="#matriz-de-planos-estratégicos">6.2. Matriz de Planos Estratégicos</a></li>
   </ul></li>
   <li><a href="#proposta-de-valor" id="toc-proposta-de-valor" class="nav-link" data-scroll-target="#proposta-de-valor">7.Proposta de Valor</a></li>
+  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais">8. Considerações Finais</a></li>
   </ul>
 </nav>
 </div>
@@ -195,35 +196,44 @@ Estudo de Mercado e Validação da Solução
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Criação dinâmica do segmento direto no escopo do Arrow (sem estourar a RAM)</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados) <span class="sc">%&gt;%</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">divisao =</span> <span class="fu">substr</span>(cnae, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">segmento_criado =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"10"</span> <span class="sc">~</span> <span class="st">"Alimentos"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"11"</span> <span class="sc">~</span> <span class="st">"Bebidas"</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"13"</span> <span class="sc">~</span> <span class="st">"Têxtil"</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"14"</span> <span class="sc">~</span> <span class="st">"Vestuário"</span>,</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"20"</span> <span class="sc">~</span> <span class="st">"Químicos"</span>,</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"21"</span> <span class="sc">~</span> <span class="st">"Farmacêutica"</span>,</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"22"</span> <span class="sc">~</span> <span class="st">"Borracha e Plástico"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"23"</span> <span class="sc">~</span> <span class="st">"Minerais não metálicos"</span>,</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"24"</span> <span class="sc">~</span> <span class="st">"Metalurgia"</span>,</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"25"</span> <span class="sc">~</span> <span class="st">"Produtos metálicos"</span>,</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"26"</span> <span class="sc">~</span> <span class="st">"Eletrônicos"</span>,</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"27"</span> <span class="sc">~</span> <span class="st">"Equipamentos elétricos"</span>,</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"28"</span> <span class="sc">~</span> <span class="st">"Máquinas e equipamentos"</span>,</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"29"</span> <span class="sc">~</span> <span class="st">"Veículos automotores"</span>,</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"30"</span> <span class="sc">~</span> <span class="st">"Outros equipamentos de transporte"</span>,</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"31"</span> <span class="sc">~</span> <span class="st">"Móveis"</span>,</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"32"</span> <span class="sc">~</span> <span class="st">"Produtos diversos"</span>,</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"46"</span> <span class="sc">~</span> <span class="st">"Comércio atacadista"</span>,</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>       divisao <span class="sc">==</span> <span class="st">"47"</span> <span class="sc">~</span> <span class="st">"Comércio varejista"</span>,</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>       <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Outros"</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>     )</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>   ) </span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)  <span class="sc">%&gt;%</span>  <span class="fu">kable</span>(</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(situacao <span class="sc">==</span> <span class="st">"Ativa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">divisao =</span> <span class="fu">substr</span>(cnae, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">segmento_criado =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Varejo farmacêutico</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      cnae <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4771701"</span>, <span class="st">"4771702"</span>, <span class="st">"4771703"</span>, <span class="st">"4771704"</span>) <span class="sc">~</span> <span class="st">"Varejo farmacêutico"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Atacado farmacêutico</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      cnae <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4644301"</span>, <span class="st">"4644302"</span>) <span class="sc">~</span> <span class="st">"Atacado farmacêutico"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Indústria farmacêutica</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"21"</span> <span class="sc">~</span> <span class="st">"Indústria farmacêutica"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"10"</span> <span class="sc">~</span> <span class="st">"Alimentos"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"11"</span> <span class="sc">~</span> <span class="st">"Bebidas"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"13"</span> <span class="sc">~</span> <span class="st">"Têxtil"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"14"</span> <span class="sc">~</span> <span class="st">"Vestuário"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"20"</span> <span class="sc">~</span> <span class="st">"Químicos"</span>,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"22"</span> <span class="sc">~</span> <span class="st">"Borracha e Plástico"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"23"</span> <span class="sc">~</span> <span class="st">"Minerais não metálicos"</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"24"</span> <span class="sc">~</span> <span class="st">"Metalurgia"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"25"</span> <span class="sc">~</span> <span class="st">"Produtos metálicos"</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"26"</span> <span class="sc">~</span> <span class="st">"Eletrônicos"</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"27"</span> <span class="sc">~</span> <span class="st">"Equipamentos elétricos"</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"28"</span> <span class="sc">~</span> <span class="st">"Máquinas e equipamentos"</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"29"</span> <span class="sc">~</span> <span class="st">"Veículos automotores"</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"30"</span> <span class="sc">~</span> <span class="st">"Outros equipamentos de transporte"</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"31"</span> <span class="sc">~</span> <span class="st">"Móveis"</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"32"</span> <span class="sc">~</span> <span class="st">"Produtos diversos"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"46"</span> <span class="sc">~</span> <span class="st">"Comércio atacadista"</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      divisao <span class="sc">==</span> <span class="st">"47"</span> <span class="sc">~</span> <span class="st">"Comércio varejista"</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Outros"</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)  <span class="sc">%&gt;%</span>  <span class="fu">kable</span>(</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1074,86 +1084,91 @@ Table&nbsp;1: Análise de Volume e Capital Mediano por Segmento de Mercado
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Farmacêutica</td>
+<td style="text-align: left;">Indústria farmacêutica</td>
 <td style="text-align: right;">1.319</td>
 <td style="text-align: right;">R$300.000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Comércio atacadista</td>
-<td style="text-align: right;">394.872</td>
-<td style="text-align: right;">R$100.000</td>
+<td style="text-align: left;">Atacado farmacêutico</td>
+<td style="text-align: right;">8.664</td>
+<td style="text-align: right;">R$200.000</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Comércio atacadista</td>
+<td style="text-align: right;">386.208</td>
+<td style="text-align: right;">R$100.000</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Produtos diversos</td>
 <td style="text-align: right;">1.478</td>
 <td style="text-align: right;">R$100.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Químicos</td>
 <td style="text-align: right;">15.821</td>
 <td style="text-align: right;">R$100.000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Veículos automotores</td>
 <td style="text-align: right;">4.560</td>
 <td style="text-align: right;">R$100.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Bebidas</td>
 <td style="text-align: right;">9.340</td>
 <td style="text-align: right;">R$70.000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Borracha e Plástico</td>
 <td style="text-align: right;">18.793</td>
 <td style="text-align: right;">R$70.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Minerais não metálicos</td>
 <td style="text-align: right;">19.189</td>
 <td style="text-align: right;">R$70.000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Máquinas e equipamentos</td>
 <td style="text-align: right;">3.795</td>
 <td style="text-align: right;">R$70.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Equipamentos elétricos</td>
 <td style="text-align: right;">5.760</td>
 <td style="text-align: right;">R$60.000</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Comércio varejista</td>
+<tr class="even">
+<td style="text-align: left;">Varejo farmacêutico</td>
 <td style="text-align: right;">136.736</td>
 <td style="text-align: right;">R$50.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Outros</td>
 <td style="text-align: right;">15.045</td>
 <td style="text-align: right;">R$20.000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Têxtil</td>
 <td style="text-align: right;">10.074</td>
 <td style="text-align: right;">R$10.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Alimentos</td>
 <td style="text-align: right;">109.598</td>
 <td style="text-align: right;">R$8.000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Móveis</td>
 <td style="text-align: right;">132.463</td>
 <td style="text-align: right;">R$5.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Produtos metálicos</td>
 <td style="text-align: right;">150.205</td>
 <td style="text-align: right;">R$5.000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Vestuário</td>
 <td style="text-align: right;">190.952</td>
 <td style="text-align: right;">R$5.000</td>
@@ -1495,8 +1510,15 @@ Figure&nbsp;8: Distribuição do Mercado Alvo por Faixa de Complexidade Operacio
 </section>
 <section id="proposta-de-valor" class="level2">
 <h2 class="anchored" data-anchor-id="proposta-de-valor">7.Proposta de Valor</h2>
-<p>Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a <strong>VISLOG</strong> transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra <strong>estatística, inteligência artificial, logística, tributação e inteligência comercial</strong> para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.</p>
-<p>– Nosso foco imediato é o avanço para Provas de Conceito (PoCs) baseadas neste perfil ideal de cliente mapeado (SOM), visando mensurar o ganho percentual na margem de contribuição (última linha do DRE) em ambiente real de operação.</p>
+<p>Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a VISLOG transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra estatística, inteligência artificial, logística, tributação e inteligência comercial para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.</p>
+</section>
+<section id="considerações-finais" class="level2">
+<h2 class="anchored" data-anchor-id="considerações-finais">8. Considerações Finais</h2>
+<p>O estudo evidencia que a VISLOG está inserida em um mercado amplo, relevante e com capacidade financeira para a adoção de soluções especializadas em precificação. O dimensionamento realizado aponta para um SAM nacional de R$ 7,91 bilhões e um SOM de R$ 785,35 milhões no primeiro ano. Mesmo em um cenário conservador, considerando a captura de 3% do mercado inicialmente alcançável, o potencial estimado corresponde a 3.272 clientes e a uma receita de R$ 23,56 milhões no primeiro ano.</p>
+<p>Além do potencial financeiro, a análise confirma a existência de uma dor recorrente nas empresas dos segmentos avaliados. A definição de preços ainda depende, em grande parte, de processos manuais, regras lineares e análises fragmentadas, que não consideram de forma integrada os efeitos da demanda, dos custos logísticos, da tributação e da concorrência sobre a rentabilidade. É nesse contexto que a VISLOG se posiciona: não apenas como uma ferramenta de monitoramento, mas como uma plataforma de apoio à decisão capaz de transformar dados operacionais em recomendações objetivas de negócio.</p>
+<p>A combinação entre modelagem estatística, inteligência artificial, conhecimento logístico e inteligência comercial constitui o principal diferencial da solução. Essa estrutura permite atender empresas com diferentes níveis de complexidade operacional, mantendo um modelo de receita recorrente e escalável, ao mesmo tempo em que entrega valor diretamente associado à margem, à competitividade e à eficiência da operação.</p>
+<p>Com base nos resultados apresentados, o próximo passo consiste na realização de Provas de Conceito com empresas aderentes ao perfil de cliente mapeado no SOM. Essas validações permitirão mensurar, em ambiente real, o impacto da plataforma sobre a margem de contribuição, o tempo de análise e a qualidade das decisões de precificação. Os resultados obtidos também servirão para aperfeiçoar o produto, calibrar o modelo comercial e consolidar casos de sucesso para a expansão da VISLOG.</p>
+<p>Concluímos, portanto, que existem fundamentos mercadológicos, financeiros e tecnológicos suficientes para o avanço da solução. A etapa seguinte será transformar esse potencial identificado em resultados comprovados, demonstrando que uma precificação orientada por dados pode produzir ganhos consistentes e sustentáveis para os clientes.</p>
 </section>
 
 </main>

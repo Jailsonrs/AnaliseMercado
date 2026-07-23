@@ -55,37 +55,46 @@ vislog_dark <- "#282828"
 vislog_gray <- "#E0E0E0"
 vislog_light_blue <- "#5C9CE6"
 
-dados <- arrow::open_dataset("./data")
+dados <- arrow::open_dataset("/home/jrs/Área de trabalho/extract data/data/")
 
 # 2. Criação dinâmica do segmento direto no escopo do Arrow (sem estourar a RAM)
 dados <- data.frame(dados) %>%
-   filter(situacao == "Ativa") %>%
-   mutate(
-     divisao = substr(cnae, 1, 2),
-     segmento_criado = case_when(
-       divisao == "10" ~ "Alimentos",
-       divisao == "11" ~ "Bebidas",
-       divisao == "13" ~ "Têxtil",
-       divisao == "14" ~ "Vestuário",
-       divisao == "20" ~ "Químicos",
-       divisao == "21" ~ "Farmacêutica",
-       divisao == "22" ~ "Borracha e Plástico",
-       divisao == "23" ~ "Minerais não metálicos",
-       divisao == "24" ~ "Metalurgia",
-       divisao == "25" ~ "Produtos metálicos",
-       divisao == "26" ~ "Eletrônicos",
-       divisao == "27" ~ "Equipamentos elétricos",
-       divisao == "28" ~ "Máquinas e equipamentos",
-       divisao == "29" ~ "Veículos automotores",
-       divisao == "30" ~ "Outros equipamentos de transporte",
-       divisao == "31" ~ "Móveis",
-       divisao == "32" ~ "Produtos diversos",
-       divisao == "46" ~ "Comércio atacadista",
-       divisao == "47" ~ "Comércio varejista",
-       TRUE ~ "Outros"
-     )
-   ) 
-
+  filter(situacao == "Ativa") %>%
+  mutate(
+    divisao = substr(cnae, 1, 2),
+    segmento_criado = case_when(
+      
+      # Varejo farmacêutico
+      cnae %in% c("4771701", "4771702", "4771703", "4771704") ~ "Varejo farmacêutico",
+      
+      # Atacado farmacêutico
+      cnae %in% c("4644301", "4644302") ~ "Atacado farmacêutico",
+      
+      # Indústria farmacêutica
+      divisao == "21" ~ "Indústria farmacêutica",
+      
+      divisao == "10" ~ "Alimentos",
+      divisao == "11" ~ "Bebidas",
+      divisao == "13" ~ "Têxtil",
+      divisao == "14" ~ "Vestuário",
+      divisao == "20" ~ "Químicos",
+      divisao == "22" ~ "Borracha e Plástico",
+      divisao == "23" ~ "Minerais não metálicos",
+      divisao == "24" ~ "Metalurgia",
+      divisao == "25" ~ "Produtos metálicos",
+      divisao == "26" ~ "Eletrônicos",
+      divisao == "27" ~ "Equipamentos elétricos",
+      divisao == "28" ~ "Máquinas e equipamentos",
+      divisao == "29" ~ "Veículos automotores",
+      divisao == "30" ~ "Outros equipamentos de transporte",
+      divisao == "31" ~ "Móveis",
+      divisao == "32" ~ "Produtos diversos",
+      divisao == "46" ~ "Comércio atacadista",
+      divisao == "47" ~ "Comércio varejista",
+      
+      TRUE ~ "Outros"
+    )
+  )
 dados %>% head(5)  %>%  kable(
     align = c("l", "r", "r"))
 
@@ -95,6 +104,7 @@ dados %>% head(5)  %>%  kable(
 # NOTA: Para fins de renderização deste documento sem a base original, 
 # as queries de EDA abaixo assumem que o objeto 'dados' já está mapeado na memória.
 ```
+
 
 ## 3. Análise Exploratória e Dimensionamento (TAM, SAM e SOM)
 
@@ -315,6 +325,11 @@ mercado_valor <- funil %>%
 
 
 
+
+```
+
+
+```{r}
 
 ```
 
@@ -621,6 +636,7 @@ tabela_segmentos %>%
   )
 ```
 
+
 ## 4. Análise do Cenário Atual: A Dor do Cliente
 
 #### Cenário Competitivo e Posicionamento de Mercado
@@ -816,6 +832,17 @@ ggplot(analise_faixas, aes(x = reorder(Perfil_Cliente, n), y = n, fill = Perfil_
 
 ## 7.Proposta de Valor
 
-Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a **VISLOG** transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra **estatística, inteligência artificial, logística, tributação e inteligência comercial** para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.
+Enquanto plataformas tradicionais concentram-se no monitoramento de preços ou na geração de dashboards, a VISLOG transforma dados operacionais em decisões comerciais automatizadas. A plataforma integra estatística, inteligência artificial, logística, tributação e inteligência comercial para recomendar preços, explicar as decisões e apoiar gestores na maximização simultânea de margem, competitividade e rentabilidade.
 
-Nosso foco imediato é o avanço para Provas de Conceito (PoCs) baseadas neste perfil ideal de cliente mapeado (SOM), visando mensurar o ganho percentual na margem de contribuição (última linha do DRE) em ambiente real de operação.
+## 8. Considerações Finais
+
+O estudo evidencia que a VISLOG está inserida em um mercado amplo, relevante e com capacidade financeira para a adoção de soluções especializadas em precificação. O dimensionamento realizado aponta para um SAM nacional de R$ 7,91 bilhões e um SOM de R$ 785,35 milhões no primeiro ano. Mesmo em um cenário conservador, considerando a captura de 3% do mercado inicialmente alcançável, o potencial estimado corresponde a 3.272 clientes e a uma receita de R$ 23,56 milhões no primeiro ano.
+
+Além do potencial financeiro, a análise confirma a existência de uma dor recorrente nas empresas dos segmentos avaliados. A definição de preços ainda depende, em grande parte, de processos manuais, regras lineares e análises fragmentadas, que não consideram de forma integrada os efeitos da demanda, dos custos logísticos, da tributação e da concorrência sobre a rentabilidade. É nesse contexto que a VISLOG se posiciona: não apenas como uma ferramenta de monitoramento, mas como uma plataforma de apoio à decisão capaz de transformar dados operacionais em recomendações objetivas de negócio.
+
+A combinação entre modelagem estatística, inteligência artificial, conhecimento logístico e inteligência comercial constitui o principal diferencial da solução. Essa estrutura permite atender empresas com diferentes níveis de complexidade operacional, mantendo um modelo de receita recorrente e escalável, ao mesmo tempo em que entrega valor diretamente associado à margem, à competitividade e à eficiência da operação.
+
+Com base nos resultados apresentados, o próximo passo consiste na realização de Provas de Conceito com empresas aderentes ao perfil de cliente mapeado no SOM. Essas validações permitirão mensurar, em ambiente real, o impacto da plataforma sobre a margem de contribuição, o tempo de análise e a qualidade das decisões de precificação. Os resultados obtidos também servirão para aperfeiçoar o produto, calibrar o modelo comercial e consolidar casos de sucesso para a expansão da VISLOG.
+
+Concluímos, portanto, que existem fundamentos mercadológicos, financeiros e tecnológicos suficientes para o avanço da solução. A etapa seguinte será transformar esse potencial identificado em resultados comprovados, demonstrando que uma precificação orientada por dados pode produzir ganhos consistentes e sustentáveis para os clientes.
+
